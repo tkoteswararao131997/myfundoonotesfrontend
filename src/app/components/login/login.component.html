@@ -7,22 +7,34 @@
 </head>
 <body>
     <mat-card class="loginbox">
-        <mat-card-title class="logintitle">Login Fundoo Account</mat-card-title>
+        <mat-card-title class="logintitle">Login To Fundoo Account</mat-card-title>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="pat@example.com">
+          <input matInput [formControl]="email" placeholder="Ex. pat@example.com">
           <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'">
+            <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="password.hasError('minlength')">
+                Minimum <strong>length</strong> is 4
+            </mat-error>
+            <mat-error *ngIf="password.hasError('required')">
+                password is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
-        <p><a href="">forgot password</a></p>
-        <button mat-raised-button color="primary" class="loginbutton" >Login</button>
-        <P>new user?<a href="../register/register.component.html">create account</a></P>
+        <p><a href="../forgotpassword/">forgot password</a></p>
+        <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
+        <P>new user?<a href="../register/">create account</a></P>
         
     </mat-card>
 
