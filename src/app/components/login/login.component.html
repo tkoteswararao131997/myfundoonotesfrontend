@@ -6,11 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+    <p hidden>invalid username or password</p>
     <mat-card class="loginbox">
         <mat-card-title class="logintitle">Login To Fundoo Account</mat-card-title>
+       
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput [formControl]="email" placeholder="Ex. pat@example.com">
+         <input matInput [formControl]="email" placeholder="Ex. pat@example.com">
           <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                 Please enter a valid email address
@@ -19,9 +21,10 @@
                 Email is <strong>required</strong>
             </mat-error>
         </mat-form-field>
+    
         <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'">
+        <mat-label>Password</mat-label>
+           <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>

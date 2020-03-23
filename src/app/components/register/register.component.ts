@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
    else
    {
    this.router.navigate(['/register']);
-   alert("email already exists");
+   alert("invalid details");
    }
  });
 //   },err => {  this.router.navigate(['/login']);

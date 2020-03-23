@@ -1,18 +1,20 @@
 .loginbox{
-    width: 25%;
-    margin-top: 120px;
+    width:18%;
+    margin-top: 10%;
     margin-left: 40%;
     border: 2px solid rgb(8, 43, 109);
     text-align: center;
-   
 }
 .logintitle{
     color:rgb(9, 15, 139);
 }
 
 .loginbutton{
-    width: 250px;
+    width: 80%;
 }
 .body{
     background-color: lighten($color: #000000, $amount: 0);
+}
+.autowidthlabels{
+    width:80%;
 }

@@ -12,13 +12,6 @@ export class ForgotpasswordComponent implements OnInit {
   email=new FormControl('',[
     Validators.required, Validators.email,
   ]);
-  password = new FormControl('', [
-    Validators.required, Validators.minLength(4),]);
-  
-    conformpassword = new FormControl('',[
-      Validators.required,Validators.minLength(4),
-    ]);
-
   constructor(private serviceObject : FundoonoteserviceService,private router : Router) { }
 
 
@@ -29,8 +22,6 @@ export class ForgotpasswordComponent implements OnInit {
   {
     const data = {
       email:this.email.value,
-      password : this.password.value,
-      conformpassword : this.conformpassword.value,
     };
   this.serviceObject.getForgotValue(data).subscribe((result:any) => {
     console.log(result);
@@ -46,7 +37,7 @@ export class ForgotpasswordComponent implements OnInit {
    else
    {
    this.router.navigate(['/forgotpassword']);
-   alert("email already exists");
+   alert("password sent ot your mail");
    }
  });
 //   },err => {  this.router.navigate(['/login']);
