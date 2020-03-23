@@ -12,12 +12,16 @@ import { LoginComponent } from './components/login/login.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 // import {FundoonoteserviceService} from './services/fundoonoteservice.service';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ModelComponent } from './components/model/model.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
     ForgotpasswordComponent,
+    DashboardComponent,
+    ModelComponent,
     
   ],
   imports: [

@@ -13,4 +13,15 @@ export class FundoonoteserviceService {
 
     return this.http.post(this.baseUrl + 'loginuser', arr);
   }
-}
+
+  getRegisterValue(arr) {
+
+    return this.http.post(this.baseUrl + 'registeruser', arr);
+  }
+
+  getForgotValue(arr) {
+
+    return this.http.post(this.baseUrl + 'forgotpassword', arr);
+  }
+  }
+
