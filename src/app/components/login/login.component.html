@@ -6,11 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <p hidden>invalid username or password</p>
     <mat-card class="loginbox">
-        <mat-card-title class="logintitle">Login To Fundoo Account</mat-card-title>
-       
-        <mat-form-field appearance="outline">
+        <mat-card-title class="logintitle">Login To Fundoo</mat-card-title>
+        <form novalidate #f="ngForm" class="container">
+        <mat-form-field appearance="outline" class="input-full-width">
           <mat-label>Email</mat-label>
          <input matInput [formControl]="email" placeholder="Ex. pat@example.com">
           <mat-icon matSuffix>email</mat-icon>
@@ -21,9 +20,8 @@
                 Email is <strong>required</strong>
             </mat-error>
         </mat-form-field>
-    
-        <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
+        <mat-form-field appearance="outline" class="input-full-width">
+        <mat-label class="loginlabels">Password</mat-label>
            <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -35,11 +33,11 @@
                 password is <strong>required</strong>
             </mat-error>
         </mat-form-field>
+    </form>
         <p><a href="../forgotpassword/">forgot password</a></p>
         <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
         <P>new user?<a href="../register/">create account</a></P>
         
-    </mat-card>
-
+</mat-card>
 </body>
 </html>

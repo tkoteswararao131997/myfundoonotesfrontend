@@ -14,6 +14,11 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ModelComponent } from './components/model/model.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { MatSnackBarModule } from "@angular/material";
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +27,7 @@ import { ModelComponent } from './components/model/model.component';
     ForgotpasswordComponent,
     DashboardComponent,
     ModelComponent,
+    ResetpasswordComponent,
     
   ],
   imports: [
@@ -31,8 +37,11 @@ import { ModelComponent } from './components/model/model.component';
     MatButtonModule, MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule,MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    LayoutModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

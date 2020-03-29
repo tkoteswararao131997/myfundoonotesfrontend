@@ -23,5 +23,11 @@ export class FundoonoteserviceService {
 
     return this.http.post(this.baseUrl + 'forgotpassword', arr);
   }
+
+  getResetValue(arr) {
+
+    return this.http.post(this.baseUrl + 'updatepassword/', arr);
+  }
+  
   }
 

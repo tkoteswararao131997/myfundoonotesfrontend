@@ -31,13 +31,13 @@ export class ForgotpasswordComponent implements OnInit {
    // console.log(results.message, ':', results);
    if(result['statusMsg']=="true")
    {
-    alert("password created");
-   this.router.navigate(['/login']);
+    alert("link sent to your mail");
+   this.router.navigate(['www.gmail.com']);
    }
    else
    {
    this.router.navigate(['/forgotpassword']);
-   alert("password sent ot your mail");
+   alert("invalid email");
    }
  });
 //   },err => {  this.router.navigate(['/login']);

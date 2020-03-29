@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       // const results = JSON.parse(temp);
       // console.log(results.message, ':', results);
       if(result['statusMsg']=="true")
-      this.router.navigate(['/register']);
+      this.router.navigate(['/dashboard']);
       else
       {
       this.router.navigate(['/login']);
