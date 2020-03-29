@@ -1,10 +1,9 @@
-.container{
+.mat-sidenav-container{
   width:100%;
 }
 .mat-sidenav{
   background-color:whitesmoke;
   width:30%;
-  height:100%;
   display:flex;
   flex-direction: row;
 }
@@ -15,60 +14,75 @@
   padding-left: 4px;
   align-content: center;
   border:1px solid grey;
-}
-html,body{
-  height : 100%;
+  position: fixed;
 }
 .keepimage{
-    height: 35px;
-    width: 35px;
-    padding-left: 1%;
-    padding-right: 1%;
+    height: 40px;
+    width: 40px;
+    padding-right:2%;
+    display: block;
 }
 .keeptext{
   font-family: sans-serif;
   font-size: 22px;
   color:rgb(99, 96, 96);
-  margin-top: 10px;
+  margin-top: -12px;
 }
-.search{
+.searchbar{
   border:none;
   outline: none;
-}
-.clear{
-  margin-left: 50%;
+  width: 90%;
+  height: 100%;
 }
 .menu{
-  padding-left: 2%;
-  padding-right: 2%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
-.refresh{
-  margin-left: 180%;
+.headericons{
+  margin-left: 15%;
+  color:rgba(192, 192, 192, 0.979);
 }
-.settings{
-  
-}
-.apps{
-  
-}
-.form2{
+.form{
   border:1px solid grey;
   padding:1px;
   height: 41px;
   border-radius: 14px;
-  margin-left:8%;
-  width: 35%;
+  width: 100%;
+  align-items: center;
 }
-.mat-nav-list{
-  
+.startmenu{
+  width:100%;
+  display:flex;
+  flex-direction: row;
+  position: fixed;
 }
-
-@media screen and (max-width : 1000px)
-{
-  #container{
-    width:100%;
+.formbar{
+  width:40%;
+  margin-left: 10%;
+}
+.headermenu{
+  width:20%;
+}
+.refresh{
+  color:rgba(192, 192, 192, 0.979);
+}
+@media only screen and (max-width: 600px) {
+.searchbar{
+  display: none;
+}
+.keeptext{
+  display: none;
+}
+}
+@media only screen and (max-width: 700px) {
+  .keepimage{
+      display: none;
   }
-  #search{
-    width: 80%;
+  .clear{
+    display: none;
+  }
+  .form{
+    border: none;
+    outline: none;
   }
 }
