@@ -1,21 +1,4 @@
-.mat-sidenav-container{
-  width:100%;
-}
-.mat-sidenav{
-  background-color:whitesmoke;
-  width:30%;
-  display:flex;
-  flex-direction: row;
-}
-.mat-sidenav-content{
-  width:100%;
-  height:45px;
-  padding : 4px;
-  padding-left: 4px;
-  align-content: center;
-  border:1px solid grey;
-  position: fixed;
-}
+
 .keepimage{
     height: 40px;
     width: 40px;
@@ -54,7 +37,11 @@
   width:100%;
   display:flex;
   flex-direction: row;
-  position: fixed;
+  height:45px;
+  padding : 4px;
+  padding-left: 4px;
+  align-content: center;
+  border:1px solid grey;
 }
 .formbar{
   width:40%;
