@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       mobileNumber:this.mobile.value,
       password: this.password.value,
     };
-  this.serviceObject.getRegisterValue(data).subscribe((result:any) => {
+  this.serviceObject.postRegisterValue(data).subscribe((result:any) => {
     console.log(result);
    console.log(result['statusMsg']);
    // const temp = JSON.stringify(result);
@@ -56,6 +56,6 @@ export class RegisterComponent implements OnInit {
 //  });
 
 
- this.serviceObject.getRegisterValue(data);
+ this.serviceObject.postRegisterValue(data);
 }
 }

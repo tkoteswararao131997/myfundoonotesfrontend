@@ -23,7 +23,7 @@ export class ForgotpasswordComponent implements OnInit {
     const data = {
       email:this.email.value,
     };
-  this.serviceObject.getForgotValue(data).subscribe((result:any) => {
+  this.serviceObject.postForgotValue(data).subscribe((result:any) => {
     console.log(result);
     console.log(result['statusMsg']);
    // const temp = JSON.stringify(result);
@@ -32,7 +32,7 @@ export class ForgotpasswordComponent implements OnInit {
    if(result['statusMsg']=="true")
    {
     alert("link sent to your mail");
-   this.router.navigate(['www.gmail.com']);
+   this.router.navigate(['/login']);
    }
    else
    {
@@ -46,6 +46,6 @@ export class ForgotpasswordComponent implements OnInit {
 //  });
 
 
- this.serviceObject.getForgotValue(data);
+ this.serviceObject.postForgotValue(data);
 }
 }

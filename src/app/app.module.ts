@@ -13,12 +13,12 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 // import {FundoonoteserviceService} from './services/fundoonoteservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ModelComponent } from './components/model/model.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatSnackBarModule } from "@angular/material";
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
+import {NotesComponent} from './components/notes/notes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,9 +26,8 @@ import { MatListModule } from '@angular/material/list';
     LoginComponent,
     ForgotpasswordComponent,
     DashboardComponent,
-    ModelComponent,
     ResetpasswordComponent,
-    
+    NotesComponent
   ],
   imports: [
     BrowserModule,

@@ -74,7 +74,7 @@
     <mat-nav-list>
       <div style="display: flex;flex-direction:column;">
         <div>
-          <button mat-icon-button class="whole">
+          <button mat-icon-button class="notes" class="whole" [routerLink]="['/dashboard/notes']">
               <mat-icon class="bulb">lightbulb_outline</mat-icon>
             <span class="name">Notes</span>
           </button>
@@ -111,4 +111,5 @@
       </div>
     </mat-nav-list>
   </mat-sidenav>
+  <router-outlet></router-outlet>
 </mat-sidenav-container>

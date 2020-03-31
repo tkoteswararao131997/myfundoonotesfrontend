@@ -14,17 +14,17 @@ export class FundoonoteserviceService {
     return this.http.post(this.baseUrl + 'loginuser', arr);
   }
 
-  getRegisterValue(arr) {
+  postRegisterValue(arr) {
 
     return this.http.post(this.baseUrl + 'registeruser', arr);
   }
 
-  getForgotValue(arr) {
+  postForgotValue(arr) {
 
     return this.http.post(this.baseUrl + 'forgotpassword', arr);
   }
 
-  getResetValue(arr) {
+  putResetValue(arr) {
 
     return this.http.post(this.baseUrl + 'updatepassword/', arr);
   }

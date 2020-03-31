@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   password = new FormControl('', [
       Validators.required, Validators.minLength(4), ]);
       isSubmit=false;
-
   constructor(private serviceObject:FundoonoteserviceService, private router: Router) {}
 
 
@@ -27,17 +26,19 @@ export class LoginComponent implements OnInit {
     };
     console.log(data);
     this.serviceObject.getLoginValue(data).subscribe((result:any) => {
-       console.log(result);
+      console.log(result);
       console.log(result['statusMsg']);
+      localStorage.setItem("token", result['data']);
       // const temp = JSON.stringify(result);
       // const results = JSON.parse(temp);
       // console.log(results.message, ':', results);
       if(result['statusMsg']=="true")
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(["/dashboard/notes/"]);
       else
       {
       this.router.navigate(['/login']);
       alert("invalid username or password");
+      { duration: 25000}
       }
     });
   //   },err => {  this.router.navigate(['/login']);

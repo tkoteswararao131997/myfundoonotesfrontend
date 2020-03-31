@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router} from '@angular/router';
 import { FundoonoteserviceService } from 'src/app/services/fundoonoteservice.service';
 import { MatSnackBar} from '@angular/material';
 @Component({
@@ -15,7 +15,7 @@ export class ResetpasswordComponent implements OnInit {
       conformpassword = new FormControl('', [
         Validators.required, Validators.minLength(4),]);
 
-  constructor(private serviceObject : FundoonoteserviceService,private router : ActivatedRoute,private matSnackBar: MatSnackBar,) { }
+  constructor(private serviceObject : FundoonoteserviceService,private router : ActivatedRoute,private matSnackBar: MatSnackBar,private route : Router) { }
 
   ngOnInit() {
   }
@@ -27,7 +27,7 @@ export class ResetpasswordComponent implements OnInit {
       // conformpassword : this.conformpassword.value,
       token : this.router.snapshot.paramMap.get('token'),
     };
-  this.serviceObject.getResetValue(data).subscribe((result:any) => {
+  this.serviceObject.putResetValue(data).subscribe((result:any) => {
     console.log(result);
    console.log(result['statusMsg']);
    // const temp = JSON.stringify(result);
@@ -40,7 +40,7 @@ export class ResetpasswordComponent implements OnInit {
       "cancel",
       { duration: 5000 }
     );
-  //  this.router.navigate(['/login']);
+    this.route.navigate(['/login']);
    }
    else
    {
@@ -54,6 +54,6 @@ export class ResetpasswordComponent implements OnInit {
 //  });
 
 
- this.serviceObject.getResetValue(data);
+ this.serviceObject.putResetValue(data);
 }
 }

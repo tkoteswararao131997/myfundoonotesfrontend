@@ -1,0 +1,34 @@
+<div>
+    <mat-card (click)="onOpen()" *ngIf="!open" class="closedmatcard" >
+        <input matInput class="searchbar" placeholder="Take a note...">
+            <div class="icons">
+                <button mat-icon-button><mat-icon>check_box</mat-icon></button>
+                <button mat-icon-button><mat-icon>brush</mat-icon></button>
+                <button mat-icon-button><mat-icon>image</mat-icon></button>
+             </div>
+    </mat-card>
+
+    <mat-card  *ngIf="open" class="openedmatcard" >
+        <form [formGroup]="createNoteForm">
+            <div>
+                <textarea matInput placeholder="Title" class="input" formControlName="title"
+                    matTextareaAutosize></textarea>
+            </div>
+            <div>
+                <textarea matInput placeholder="Take a note..." class="input" matTextareaAutosize
+                    formControlName="description" style="font-size: 12px;"></textarea>
+            </div>
+            <div  style="display:flex;flex-direction: row;align-items: center;">
+            <button mat-icon-button class="expandedicons"><mat-icon>notification_important</mat-icon></button>
+            <button mat-icon-button class="expandedicons"><mat-icon>person_add</mat-icon></button>
+            <button mat-icon-button class="expandedicons"><mat-icon>color_lens</mat-icon></button>
+            <button mat-icon-button class="expandedicons"><mat-icon>image</mat-icon></button>
+            <button mat-icon-button class="expandedicons"><mat-icon>archive</mat-icon></button>
+            <button mat-icon-button class="threedots"><mat-icon>keyboard_control</mat-icon></button>
+            <button mat-icon-button class="expandedicons"><mat-icon>undo</mat-icon></button>
+            <button mat-icon-button class="expandedicons"><mat-icon>redo</mat-icon></button>
+            <button style="left:10%;border:none;outline: none;"(click)="createNote()">close</button>
+            </div>
+        </form>
+    </mat-card>  
+</div>
