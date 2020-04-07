@@ -12,7 +12,8 @@ export class TrashnotesComponent implements OnInit {
   constructor(private noteservice : NoteService,private snackbar : MatSnackBar) { }
   ngOnInit() {
 
-    this.noteservice.get
+    this.noteservice.gettrashnotes().subscribe((result : any) =>{
+      this.trashnotes=result['data'];
+    })
   }
-
 }

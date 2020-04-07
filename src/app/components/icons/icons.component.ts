@@ -21,6 +21,7 @@ export class IconsComponent implements OnInit {
           this.snackbar.open("note was archieved","cancel",{duration : 5000});
         else
           this.snackbar.open("error occured","cancel",{duration : 5000});
+        window.location.reload();
       })
   }
 

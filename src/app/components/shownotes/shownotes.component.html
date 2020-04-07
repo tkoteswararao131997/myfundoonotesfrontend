@@ -7,7 +7,30 @@
     <textarea  class="description" cdkTextareaAutosize disabled>{{ note.description }}</textarea>
   </mat-card-content>
   <div class="expandedicons">
-    <app-icons [note]="note"></app-icons>
-</div>
+    <div
+      *ngIf="
+      !note.trashed;
+      else trashedNote
+      "
+    >
+      <app-icons [note]="note"></app-icons>
+    </div>
+    <ng-template #trashedNote>
+      <div class="trashcard">
+        <mat-card-footer>
+          <button mat-icon-button (click)="deleteForever()">
+            <mat-icon matTooltip="Delete forever">delete_forever</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            matTooltip="Restore"
+            (click)="restoreFromTrash()"
+          >
+            <mat-icon>restore_from_trash</mat-icon>
+          </button>
+        </mat-card-footer>
+      </div>
+    </ng-template>
+  </div>
 </mat-card>
 </div>

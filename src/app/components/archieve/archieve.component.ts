@@ -13,7 +13,7 @@ export class ArchieveComponent implements OnInit {
     ngOnInit() {
     this.noteservice.getarchievenotes().subscribe((result : any)=>{
       console.log(result);
-      this.notes=result;
+      this.notes=result['data'];
     })
   }
 

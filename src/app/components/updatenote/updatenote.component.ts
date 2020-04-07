@@ -27,6 +27,7 @@ export class UpdatenoteComponent implements OnInit {
         this.snackbar.open(response['message'], "ok", {
           duration: 4000
         });
+        window.location.reload();
       },
       errors => {
         console.log("Opps found errors.", errors);

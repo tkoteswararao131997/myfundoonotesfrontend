@@ -1,7 +1,7 @@
 <div style="margin-top:40px;margin-left:250px">
 <div *ngFor="let note of notes" class="noteCard">
     <div *ngIf="note.archieve==0 && note.trashed==0 && note.pinned==0"> 
-    <app-shownotes [note]="note"></app-shownotes>
+        <app-shownotes [note]="note"></app-shownotes>
     </div>
 </div>
 </div>

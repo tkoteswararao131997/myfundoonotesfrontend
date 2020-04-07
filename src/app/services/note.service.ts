@@ -10,12 +10,14 @@ export class NoteService {
   noteId:number;
   baseUrl="http://localhost:8080/";
   constructor(private http : HttpClient,private httpuser : HttpService) { }
-  public httpOptions = {
+  public  httpOptions = {
     headers: new HttpHeaders({
       "content-type": "application/json",
       token: localStorage.getItem("token")
     })
   };
+  
+
 
 
   public createnote(arr) {
@@ -29,6 +31,7 @@ export class NoteService {
 
   updatenote(note : Note,noteId : number):Observable<Note>
   {
+    console.log(this.httpOptions);
     return this.http.put<Note>(this.baseUrl+"updatenote/"+noteId,note,this.httpOptions);
   }
 
@@ -40,13 +43,16 @@ export class NoteService {
 
   archieve(noteId:number)
   {
-    return this.http.put(this.baseUrl+"isarchieve/"+noteId,this.httpOptions);
+    return this.http.put(this.baseUrl+"isarchieve/"+noteId,{},this.httpOptions);
   }
   getarchievenotes(){
     return this.http.get(this.baseUrl+"getallarchieves",this.httpOptions);
   }
   trashed(noteId:number)
   {
-    return this.http.put(this.baseUrl+"istrashed/"+noteId,this.httpOptions);
+    return this.http.put(this.baseUrl+"istrashed/"+noteId,{},this.httpOptions);
+  }
+  gettrashnotes(){
+    return this.http.get(this.baseUrl+"getalltrashnotes",this.httpOptions);
   }
 }
