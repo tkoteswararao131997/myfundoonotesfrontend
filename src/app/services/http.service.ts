@@ -8,14 +8,17 @@ import { Observable } from 'rxjs';
 export class HttpService {
 
   constructor(private _httpClient: HttpClient) { }
-  public post(url: string, body: any, options: any): Observable<any> {
+  public postMethod(url: string, body: any, options: any): Observable<any> {
     return this._httpClient.post(url, body, options);
   }
-  public patchMethod(url: string, body: any, options: any): Observable<any> {
-    return this._httpClient.patch(url, body, options);
-  }
-  public get(url: string, options: any): Observable<any> {
+  public getMethod(url: string, options: any): Observable<any> {
     return this._httpClient.get(url, options);
+  }
+  public putMethod(url: string, body: any, options: any): Observable<any> {
+    return this._httpClient.put(url, body, options);
+  }
+  public deleteMethod(url: string, options: any): Observable<any> {
+    return this._httpClient.delete(url, options);
   }
   public httpOptions = {
     headers: new HttpHeaders({

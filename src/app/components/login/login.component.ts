@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
-import { FundoonoteserviceService } from 'src/app/services/fundoonoteservice.service';
+import { UserService } from 'src/app/services/user.service';
+import { observable } from 'rxjs';
+import { AnimationDurations, MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
   password = new FormControl('', [
       Validators.required, Validators.minLength(4), ]);
       isSubmit=false;
-  constructor(private serviceObject:FundoonoteserviceService, private router: Router) {}
+      public users=[];
+  constructor(private userservice:UserService, private router: Router,private snackbar : MatSnackBar) {}
 
 
   ngOnInit() {
@@ -24,33 +27,18 @@ export class LoginComponent implements OnInit {
       password: this.password.value,
       email: this.email.value,
     };
-    console.log(data);
-    this.serviceObject.getLoginValue(data).subscribe((result:any) => {
+    this.userservice.loginuser(data)
+    .subscribe((result:any)=>{
       console.log(result);
-      console.log(result['statusMsg']);
-      localStorage.setItem("token", result['data']);
-      // const temp = JSON.stringify(result);
-      // const results = JSON.parse(temp);
-      // console.log(results.message, ':', results);
-      if(result['statusMsg']=="true")
-      this.router.navigate(["/dashboard/notes/"]);
-      else
-      {
-      this.router.navigate(['/login']);
-      alert("invalid username or password");
-      { duration: 25000}
-      }
+    localStorage.setItem("token",result['data']);
+    if(result['statusMsg']=="true")
+    this.router.navigate(["/dashboard/notes"]);
+    else{
+      this.router.navigate(["/login"]);
+      this.email.reset();
+      this.password.reset();
+      this.snackbar.open("login failed","cancel",{ duration: 5000});
+    }
     });
-  //   },err => {  this.router.navigate(['/login']);
-  //   console.log(err);
-  //   alert("invalid details"); 
-  //  });
-  
-
-    this.serviceObject.getLoginValue(data);
-    
-
 }
-
-
 }

@@ -41,7 +41,8 @@
   padding : 4px;
   padding-left: 4px;
   align-content: center;
-  border:1px solid grey;
+  position: fixed;
+  z-index:99999999;
 }
 .formbar{
   width:40%;
@@ -53,50 +54,16 @@
 .refresh{
   color:rgba(192, 192, 192, 0.979);
 }
-.whole{
+.mat-drawer-container{
+  width:15%;height:100%;position:fixed;
+}
+.mat-drawer{
+  border:none;background-color:white;
   width:100%;
 }
-.bulb{
-  margin-left: -32%;
-  margin-right: 10%;
+.alignitems{
+  display: flex;flex-direction:column;margin-left: 20px;
 }
-.editlabels{
-  margin-left: -23%;
-  margin-right: 10%;
-}
-.reminder{
-  margin-left: -6%;
-  margin-right: 10%;
-}
-.archieve{
-  margin-left: -30%;
-  margin-right: 10%;
-}
-.trash{
-  margin-left: -12%;
-  margin-right: 10%;
-}
-@media only screen and (max-width: 600px) {
-.searchbar{
-  display: none;
-}
-.keeptext{
-  display: none;
-}
-}
-@media only screen and (max-width: 700px) {
-  .keepimage{
-      display: none;
-  }
-  .clear{
-    display: none;
-  }
-  .form{
-    border: none;
-    outline: none;
-  }
-}
-.notes{
-  top:10%;
-  background-color: red;
+.buttons{
+  width:100%;
 }

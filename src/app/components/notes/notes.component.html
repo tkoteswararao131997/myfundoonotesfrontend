@@ -11,24 +11,17 @@
     <mat-card  *ngIf="open" class="openedmatcard" >
         <form [formGroup]="createNoteForm">
             <div>
-                <textarea matInput placeholder="Title" class="input" formControlName="title"
-                    matTextareaAutosize></textarea>
+                <input type="text" placeholder="Title" class="input" formControlName="title">
             </div>
             <div>
-                <textarea matInput placeholder="Take a note..." class="input" matTextareaAutosize
-                    formControlName="description" style="font-size: 12px;"></textarea>
+                <input type="text" placeholder="description" class="input" formControlName="description">
+
             </div>
             <div  style="display:flex;flex-direction: row;align-items: center;">
-            <button mat-icon-button class="expandedicons"><mat-icon>notification_important</mat-icon></button>
-            <button mat-icon-button class="expandedicons"><mat-icon>person_add</mat-icon></button>
-            <button mat-icon-button class="expandedicons"><mat-icon>color_lens</mat-icon></button>
-            <button mat-icon-button class="expandedicons"><mat-icon>image</mat-icon></button>
-            <button mat-icon-button class="expandedicons"><mat-icon>archive</mat-icon></button>
-            <button mat-icon-button class="threedots"><mat-icon>keyboard_control</mat-icon></button>
-            <button mat-icon-button class="expandedicons"><mat-icon>undo</mat-icon></button>
-            <button mat-icon-button class="expandedicons"><mat-icon>redo</mat-icon></button>
+            <app-icons></app-icons>
             <button style="left:10%;border:none;outline: none;"(click)="createNote()">close</button>
             </div>
         </form>
-    </mat-card>  
+    </mat-card> 
+    <app-getnotes></app-getnotes>
 </div>

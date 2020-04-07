@@ -1,0 +1,13 @@
+<div class="shownotes">
+<mat-card class="matcardnote">
+  <mat-card-title (click)="!note.trashed && openNote(note)" class="content">
+    <textarea  class="textArea" cdkTextareaAutosize disabled>{{ note.title }}</textarea>
+  </mat-card-title>
+  <mat-card-content (click)="!note.trashed && openNote(note)"class="content">
+    <textarea  class="description" cdkTextareaAutosize disabled>{{ note.description }}</textarea>
+  </mat-card-content>
+  <div class="expandedicons">
+    <app-icons [note]="note"></app-icons>
+</div>
+</mat-card>
+</div>

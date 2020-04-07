@@ -1,0 +1,62 @@
+.textarea {
+    border: 0px;
+    outline: 0px;
+  }
+  
+  .noteTitle {
+    border: none;
+    outline: none;
+    width: 500px;
+    height: auto;
+    padding-left: 18px;
+    padding-right: 0px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    display: flex;
+    background-color: white;
+    font-weight: bold;
+  }
+  .description{
+    border: none;
+    margin-bottom: 0px;
+    background-color: white;
+  }
+  .textArea {
+    border: none;
+    margin-bottom: 0px;
+    background-color: white;
+    font-weight: bold;
+    
+  }
+  textarea {
+    width: 100%;
+  }
+  // width of a crad of note
+  #note-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  #note-description {
+    font-size: 12px;
+  }
+  .matcardnote{
+    width: 75%;
+    left:23%;
+  }
+  .shownotes{
+    margin-top:1%;
+    bottom: 20%;
+  }
+  .expandedicons{
+    visibility: hidden;
+    display:flex;flex-direction: row; width:100%;margin-left:1%;
+  }
+  .matbutton{
+    
+  }
+  .matcardnote:hover{
+    
+    .expandedicons{
+      visibility: visible;
+    }
+  }

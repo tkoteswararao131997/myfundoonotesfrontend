@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute,Router} from '@angular/router';
-import { FundoonoteserviceService } from 'src/app/services/fundoonoteservice.service';
+// import { FundoonoteserviceService } from 'src/app/services/fundoonoteservice.service';
 import { MatSnackBar} from '@angular/material';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-resetpassword',
   templateUrl: './resetpassword.component.html',
@@ -11,49 +12,28 @@ import { MatSnackBar} from '@angular/material';
 export class ResetpasswordComponent implements OnInit {
     newpassword = new FormControl('', [
       Validators.required, Validators.minLength(4),]);
-
-      conformpassword = new FormControl('', [
-        Validators.required, Validators.minLength(4),]);
-
-  constructor(private serviceObject : FundoonoteserviceService,private router : ActivatedRoute,private matSnackBar: MatSnackBar,private route : Router) { }
-
+      token : string;
+      constructor(private userservice : UserService,private router:Router,private snackbar : MatSnackBar,private activateroute : ActivatedRoute){}
   ngOnInit() {
   }
-
   onReset()
   {
-    const data = {
+    const data={
       newpassword : this.newpassword.value,
-      // conformpassword : this.conformpassword.value,
-      token : this.router.snapshot.paramMap.get('token'),
+      token : this.activateroute.snapshot.paramMap.get('token'),
     };
-  this.serviceObject.putResetValue(data).subscribe((result:any) => {
-    console.log(result);
-   console.log(result['statusMsg']);
-   // const temp = JSON.stringify(result);
-   // const results = JSON.parse(temp);
-   // console.log(results.message, ':', results);
-   if(result['statusMsg']=="true")
-   {
-    this.matSnackBar.open(
-      "your password updated",
-      "cancel",
-      { duration: 5000 }
-    );
-    this.route.navigate(['/login']);
-   }
-   else
-   {
-  //  this.router.navigate(['/resetpassword']);
-   alert("invalid details");
-   }
- });
-//   },err => {  this.router.navigate(['/login']);
-//   console.log(err);
-//   alert("invalid details"); 
-//  });
+    console.log(this.token);
+    console.log(this.newpassword),
+    this.userservice.updatepassword(data).subscribe((result:any) => {
+      console.log(result);
+      if(result['statusMsg']=="true")
+        this.router.navigate(["/login"]);
+      else
+      {
+        this.snackbar.open("updation failed","cancel",{ duration: 5000});
+        this.router.navigate(["/updatepassword"]);
+      }
+    });
 
-
- this.serviceObject.putResetValue(data);
 }
 }

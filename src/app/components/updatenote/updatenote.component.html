@@ -1,0 +1,40 @@
+<mat-card
+  mat-dialog-content
+  fxLayout="column"
+  fxFlex
+  [ngStyle]="{ 'background-color': note.color }"
+>
+  <mat-card-title>
+    <textarea
+      id="title"
+      [(ngModel)]="note.title"
+      matInput
+      matTextareaAutosize
+      type="text"
+      placeholder="Title"
+      [ngStyle]="{ 'background-color': note.color }"
+    ></textarea>
+  </mat-card-title>
+  <mat-card-content>
+    <textarea
+      matInput
+      type="text"
+      matTextareaAutosize
+      
+      placeholder="Take a note"
+      [(ngModel)]="note.description"
+      [ngStyle]="{ 'background-color': note.color }"
+    ></textarea>
+  </mat-card-content>
+  <div class="lastEdit" *ngIf="note.updatedDate != null" align="end">
+    <span style="margin-top: 8px;"
+      ><small>Last Edit: {{ note.updatedDate }}</small></span
+    >
+  </div>
+  <div class="icon" mat-dialog-actions>
+    <app-icons></app-icons>
+    <button mat-button (click)="onSubmit() || (open = !open)" style="margin-left: 42%;">
+      Close
+    </button>
+  </div>
+</mat-card>

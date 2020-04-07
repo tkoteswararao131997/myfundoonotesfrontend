@@ -19,6 +19,15 @@ import { MatSnackBarModule } from "@angular/material";
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import {NotesComponent} from './components/notes/notes.component';
+import { ShownotesComponent } from './components/shownotes/shownotes.component';
+import { GetnotesComponent } from './components/getnotes/getnotes.component';
+import { UpdatenoteComponent } from './components/updatenote/updatenote.component';
+import { ArchieveComponent } from './components/archieve/archieve.component';
+import { IconsComponent } from './components/icons/icons.component';
+import { UserService } from './services/user.service';
+import { NoteService } from './services/note.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,8 +36,16 @@ import {NotesComponent} from './components/notes/notes.component';
     ForgotpasswordComponent,
     DashboardComponent,
     ResetpasswordComponent,
-    NotesComponent
+    NotesComponent,
+    ShownotesComponent,
+    GetnotesComponent,
+    UpdatenoteComponent,
+    ArchieveComponent,
+    IconsComponent,
+    ArchieveComponent,
+    TrashnotesComponent
   ],
+  entryComponents: [UpdatenoteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,8 +58,9 @@ import {NotesComponent} from './components/notes/notes.component';
     MatSnackBarModule,
     LayoutModule,
     MatListModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [UserService,NoteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
