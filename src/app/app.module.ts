@@ -5,8 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/register/register.component';
-
-import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule} from '@angular/material';
+import {MatButtonModule,MatCheckboxModule,MatToolbarModule,MatInputModule,MatProgressSpinnerModule,MatCardModule,MatMenuModule, MatIconModule, MatTooltipModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
@@ -28,6 +27,7 @@ import { UserService } from './services/user.service';
 import { NoteService } from './services/note.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
+import {MatTooltip} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +58,8 @@ import { TrashnotesComponent } from './components/trashnotes/trashnotes.componen
     MatSnackBarModule,
     LayoutModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule,
   ],
   providers: [UserService,NoteService],
   bootstrap: [AppComponent]

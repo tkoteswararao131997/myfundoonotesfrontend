@@ -1,26 +1,25 @@
 <div>
     <mat-card (click)="onOpen()" *ngIf="!open" class="closedmatcard" >
-        <input matInput class="searchbar" placeholder="Take a note...">
-            <div class="icons">
-                <button mat-icon-button><mat-icon>check_box</mat-icon></button>
-                <button mat-icon-button><mat-icon>brush</mat-icon></button>
-                <button mat-icon-button><mat-icon>image</mat-icon></button>
-             </div>
+        <input matInput class="searchbar" placeholder="Take a note..."><button mat-icon-button class="closedmaticons" matTooltip="New list"><mat-icon>check_box</mat-icon></button>
+        <button mat-icon-button class="closedmaticons" matTooltip="New note with drawing"><mat-icon>brush</mat-icon></button>
+        <button mat-icon-button class="closedmaticons" matTooltip="New note with image"><mat-icon>image</mat-icon></button>
     </mat-card>
 
     <mat-card  *ngIf="open" class="openedmatcard" >
         <form [formGroup]="createNoteForm">
-            <div>
+            <div style="display: flex;flex-direction: row;align-items: center;">
                 <input type="text" placeholder="Title" class="input" formControlName="title">
             </div>
             <div>
                 <input type="text" placeholder="description" class="input" formControlName="description">
 
             </div>
-            <div  style="display:flex;flex-direction: row;align-items: center;">
-            <app-icons></app-icons>
-            <button style="left:10%;border:none;outline: none;"(click)="createNote()">close</button>
-            </div>
+            <mat-card-footer>
+                    <app-icons></app-icons>
+                    <button mat-icon-button><mat-icon>undo</mat-icon></button>
+                    <button mat-icon-button><mat-icon>redo</mat-icon></button>
+                    <button style="background-color: white;border:none;outline: none;margin-left:10%"(click)="createNote()">close</button>
+            </mat-card-footer>
         </form>
     </mat-card> 
     <app-getnotes></app-getnotes>

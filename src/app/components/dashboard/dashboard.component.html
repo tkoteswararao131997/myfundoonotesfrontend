@@ -31,17 +31,37 @@
     </div>
   <div style="display:flex; flex-direction: row;" class="headericons">
     <div class="refresh">
-      <button mat-icon-button>
+      <button mat-button mat-icon-button matTooltip="refresh">
         <mat-icon>refresh</mat-icon>
       </button>
     </div>
      <div class="list">
-      <button mat-icon-button>
-        <mat-icon>grid_view</mat-icon>
-      </button>
+      <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxFlex="10"
+          fxLayoutGap="30px"
+        >
+          <button
+          mat-button mat-icon-button
+            *ngIf="!grid"
+            matTooltip="List view"
+            (click)="onClickView()"
+          >
+            <mat-icon>view_stream</mat-icon>
+          </button>
+          <button
+          mat-button mat-icon-button
+            *ngIf="grid"
+            matTooltip="Grid view"
+            (click)="onClickView()"
+          >
+            <mat-icon>view_module</mat-icon>
+          </button>
+        </div>
     </div>
    <div class="settings">
-      <button mat-icon-button class="settings" [matMenuTriggerFor]="menu" matTooltip="settings">
+      <button mat-button mat-icon-button class="settings" [matMenuTriggerFor]="menu" matTooltip="settings">
         <mat-icon>settings</mat-icon>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Item 1</button>
@@ -50,9 +70,9 @@
      </button>
     </div>
    <div class="apps">
-      <button mat-button mat-icon-button class="apps" (click)="apps()" fxShow="true">
+      <button mat-button mat-icon-button class="apps" [matMenuTriggerFor]="menu1" fxShow="true" matTooltip="Apps">
         <mat-icon>apps</mat-icon>
-          <mat-menu #menu="matMenu">
+          <mat-menu #menu1="matMenu">
             <button mat-menu-item>Item 1</button>
             <button mat-menu-item>Item 2</button>
           </mat-menu>
@@ -71,57 +91,49 @@
 <mat-drawer-container>
   <mat-drawer #snav mode="side" [opened]="true">
     <mat-nav-list>
-      <div class="alignitems">
-        <div class="buttons" [ngClass]="{ 'colorRed' :vnotes}">
-          <button mat-icon-button class="whole" (click)="notes()"> 
-              <mat-icon class="bulb">lightbulb_outline</mat-icon>
-            <span class="name">Notes</span>
+          <button mat-icon-button id="sidenav-button" [routerLink]="['/dashboard/notes']">
+            <div class="displaytype">
+            <div id="icon"> 
+            <mat-icon>lightbulb_outline</mat-icon>
+            </div>
+            <label id="text">Notes</label>
+          </div>
           </button>
-        </div>
-      <br>
-        <div class="buttons" [ngClass]="{ 'colorRed' :vreminder}">
-        <div class="reminder">
-          <button mat-icon-button class="whole" (click)="reminder()">
-              <mat-icon class="reminder">notifications</mat-icon>
-            <span class="name">Reminders</span>
+          <button mat-icon-button id="sidenav-button" >
+          <div class="displaytype">
+            <div id="icon">
+            <mat-icon>notifications</mat-icon>
+            </div>
+            <label id="text">Reminders</label>
+          </div>
           </button>
-        </div>
-        </div>
-        <br>
         <mat-divider></mat-divider>
-        <br>
-        <div style="margin-left:20%;">
-            <label>Labels</label>
-        </div>
-        <br>
-        <div class="buttons" [ngClass]="{ 'colorRed' :veditLabel}">
-        <div class="editLabels">
-          <button mat-icon-button class="whole" (click)="editLabel()">
-              <mat-icon class="editlabels">edit</mat-icon>
-            <span class="name">Edit Labels</span>
+            <label id="labels">Labels</label>
+          <button mat-icon-button id="sidenav-button" >
+            <div class="displaytype">
+            <div id="icon">
+              <mat-icon>edit</mat-icon>
+              </div>
+            <label id="text">Edit Labels</label>
+          </div>
           </button>
-        </div>
-        </div>
         <mat-divider></mat-divider>
-        <br>
-        <div class="buttons" [ngClass]="{ 'colorRed' :varchive}">
-        <div class="archive">
-          <button mat-icon-button class="whole" (click)="archive()" [routerLink]="['/dashboard/archievenotes']">
-              <mat-icon class="archieve">archive</mat-icon>
-            <span class="name">Archive</span>
+          <button mat-icon-button id="sidenav-button" [routerLink]="['/dashboard/archievenotes']">
+            <div class="displaytype">
+            <div id="icon">
+              <mat-icon>archive</mat-icon>
+            </div>
+            <label id="text">Archive</label>
+          </div>
           </button>
-        </div>
-        </div>
-        <br>
-        <div class="buttons" [ngClass]="{ 'colorRed' :vtrash}">
-        <div class="trash">
-          <button mat-icon-button class="whole" (click)="trash()" [routerLink]="['/dashboard/trashnotes']">
-              <mat-icon class="trash">delete</mat-icon>
-            <span class="name">Trash</span>
+          <button mat-icon-button id="sidenav-button" [routerLink]="['/dashboard/trashnotes']">
+            <div class="displaytype">
+            <div id="icon">
+              <mat-icon>delete</mat-icon>
+            </div>
+            <label id="text">Trash</label>
+          </div>
           </button>
-        </div>
-      </div>
-      </div>
     </mat-nav-list>
   </mat-drawer>
 </mat-drawer-container>

@@ -10,63 +10,9 @@ import { element } from 'protractor';
   styleUrls: ['./dashboard.component.scss']
 })
  export class DashboardComponent { 
-   vnotes : any= false;
-   vreminder : any= false;
-   veditLabel : any= false;
-   varchive : any= false;
-   vtrash : any= false;
-//   token : String;
-//   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-//     .pipe(
-//       map(result => result.matches),
-//       shareReplay()
-//     );
-
+  grid: boolean = true;
   constructor(private router : Router) {}
-  // onNotes() {
-  //   this.token = localStorage.getItem("token");
-  //   console.log(this.token)
-  //   this.router.navigate(['dashboard/notes/' + this.token])
-  // }
-  notes()
-  {
-    this.vnotes=true;
-    this.vreminder=false;
-    this.veditLabel=false;
-    this.varchive=false;
-    this.vtrash=false;
-    this.router.navigate(['dashboard/notes']);
-  }
-  reminder()
-  {
-    this.vnotes=false;
-    this.vreminder=true;
-    this.veditLabel=false;
-    this.varchive=false;
-    this.vtrash=false;
-  }
-  editLabel()
-  {
-    this.vnotes=false;
-    this.vreminder=false;
-    this.veditLabel=true;
-    this.varchive=false;
-    this.vtrash=false;
-  }
-  archive()
-  {
-    this.vnotes=false;
-    this.vreminder=false;
-    this.veditLabel=false;
-    this.varchive=true;
-    this.vtrash=false;
-  }
-  trash()
-  {
-    this.vnotes=false;
-    this.vreminder=false;
-    this.veditLabel=false;
-    this.varchive=false;
-    this.vtrash=true;
+  onClickView() {
+    return this.grid === true ? (this.grid = false) : (this.grid = true);
   }
 }

@@ -20,6 +20,7 @@ constructor(
   private _formBuilder: FormBuilder,
   private _noteService: NoteService
 ) { }
+
 ngOnInit() {
   this.createNoteForm = this._formBuilder.group({
     title: [null, Validators.required],
@@ -48,5 +49,10 @@ createNote() {
     })
   }
   
+}
+
+dopin()
+{
+
 }
 }

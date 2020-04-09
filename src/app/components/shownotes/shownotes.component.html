@@ -1,19 +1,17 @@
-<div class="shownotes">
-<mat-card class="matcardnote">
+<div class="shownotes" fxLayout="row" fxLayoutAlign="space-between around">
+<mat-card class="matcardnote" autocomplete="off" role="combobox" flex="column"
+[ngStyle]="{ 'background-color': note.color }"
+>
   <mat-card-title (click)="!note.trashed && openNote(note)" class="content">
-    <textarea  class="textArea" cdkTextareaAutosize disabled>{{ note.title }}</textarea>
-  </mat-card-title>
+    <textarea  class="text" cdkTextareaAutosize disabled [ngStyle]="{ 'background-color': note.color }">{{ note.title }}</textarea></mat-card-title>
   <mat-card-content (click)="!note.trashed && openNote(note)"class="content">
-    <textarea  class="description" cdkTextareaAutosize disabled>{{ note.description }}</textarea>
+    <textarea  class="text" cdkTextareaAutosize disabled [ngStyle]="{ 'background-color': note.color }">{{ note.description }}</textarea>
+    
   </mat-card-content>
-  <div class="expandedicons">
-    <div
-      *ngIf="
-      !note.trashed;
-      else trashedNote
-      "
-    >
+    <div *ngIf="!note.trashed;else trashedNote">
+      <mat-card-footer class="icons">
       <app-icons [note]="note"></app-icons>
+      </mat-card-footer>
     </div>
     <ng-template #trashedNote>
       <div class="trashcard">
@@ -21,16 +19,11 @@
           <button mat-icon-button (click)="deleteForever()">
             <mat-icon matTooltip="Delete forever">delete_forever</mat-icon>
           </button>
-          <button
-            mat-icon-button
-            matTooltip="Restore"
-            (click)="restoreFromTrash()"
-          >
+          <button mat-icon-button matTooltip="Restore" (click)="restoreFromTrash()">
             <mat-icon>restore_from_trash</mat-icon>
           </button>
         </mat-card-footer>
       </div>
     </ng-template>
-  </div>
 </mat-card>
 </div>

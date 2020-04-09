@@ -1,4 +1,15 @@
-.expandedicons{
-    color:rgb(117, 115, 115);
-    width:15%;
+mat-icon{
+    opacity: 0.7;
+    font-size: 17px;
+}
+.icons{
+    display:flex;
+    flex-direction: row;  
+}
+.remindme{
+    padding-left:10px;
+}
+.mat-card-footer {
+    margin: 0 -16px -16px -16px;
+    display: inline-block;
 }
