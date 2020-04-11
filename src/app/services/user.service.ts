@@ -28,4 +28,5 @@ export class UserService {
   {
     return this.http.post<User>(this.baseurl+"forgotpassword",arr);
   }
+  
 }

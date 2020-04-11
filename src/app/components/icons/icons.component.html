@@ -10,7 +10,7 @@
   </button>
   <mat-menu #menu="matMenu">
     <div *ngFor="let colors of colorsList" fxLayout="row">
-      <div *ngFor="let color of colors" class="colorsList" fxLayout="col">
+      <div *ngFor="let color of colors" class="colorsList">
         <button [ngStyle]="{ 'background-color': color.colorCode }"
             (click)="changeColor(color)"
             matTooltip="{{ color.name }}"

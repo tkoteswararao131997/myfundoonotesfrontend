@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,6 +29,9 @@ import { NoteService } from './services/note.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
 import {MatTooltip} from '@angular/material';
+import { CreatelabelComponent } from './components/createlabel/createlabel.component';
+import { ShowlabelComponent } from './components/showlabel/showlabel.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,9 @@ import {MatTooltip} from '@angular/material';
     ArchieveComponent,
     IconsComponent,
     ArchieveComponent,
-    TrashnotesComponent
+    TrashnotesComponent,
+    CreatelabelComponent,
+    ShowlabelComponent
   ],
   entryComponents: [UpdatenoteComponent],
   imports: [
@@ -60,6 +66,7 @@ import {MatTooltip} from '@angular/material';
     MatListModule,
     MatDialogModule,
     MatTooltipModule,
+    FlexLayoutModule,
   ],
   providers: [UserService,NoteService],
   bootstrap: [AppComponent]

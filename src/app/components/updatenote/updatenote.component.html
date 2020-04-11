@@ -1,3 +1,9 @@
+<mat-card
+  mat-dialog-content
+  fxLayout="column"
+  fxFlex
+  [ngStyle]="{'background-color': note.color}"
+  >
   <mat-card-title>
     <input type="text" class="text" [(ngModel)]="note.title" [ngStyle]="{ 'background-color': note.color }">
   </mat-card-title>
@@ -14,4 +20,5 @@
     <button mat-button (click)="onSubmit() || (open = !open)" style="margin-left: 20%;">
       Close
     </button>
-    </mat-card-footer>
+  </mat-card-footer>
+ </mat-card>

@@ -104,6 +104,19 @@ btn-upload input[type="file"] {
   margin-top: 10px;
   margin-top : 20px;
 }
+#sidenav-button-label {
+  border-top-right-radius: 30vh;
+  border-bottom-right-radius: 30vh;
+  border-bottom-left-radius: none;
+  width: 100%;
+  height: 40px;
+  margin-top : 15px;
+  right:60px;
+}
+#labelicon{
+  margin-right:40px;
+  margin-left: 20px;
+}
 // #sidenav-button:hover{
 //   background-color: silver;
 // }
@@ -125,4 +138,11 @@ btn-upload input[type="file"] {
   display:flex;
   flex-direction: row;
   align-items: center;
+}
+mat-dialog-container {
+  position: fixed;
+  left: 20%;
+  top: 0%;
+  background-color:white;
+  z-index: 100000;
 }

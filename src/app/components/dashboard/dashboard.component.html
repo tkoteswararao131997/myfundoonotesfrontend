@@ -91,7 +91,7 @@
 <mat-drawer-container>
   <mat-drawer #snav mode="side" [opened]="true">
     <mat-nav-list>
-          <button mat-icon-button id="sidenav-button" [routerLink]="['/dashboard/notes']">
+          <button mat-button id="sidenav-button" [routerLink]="['/dashboard/notes']">
             <div class="displaytype">
             <div id="icon"> 
             <mat-icon>lightbulb_outline</mat-icon>
@@ -99,7 +99,7 @@
             <label id="text">Notes</label>
           </div>
           </button>
-          <button mat-icon-button id="sidenav-button" >
+          <button mat-button id="sidenav-button" >
           <div class="displaytype">
             <div id="icon">
             <mat-icon>notifications</mat-icon>
@@ -109,7 +109,13 @@
           </button>
         <mat-divider></mat-divider>
             <label id="labels">Labels</label>
-          <button mat-icon-button id="sidenav-button" >
+            <div style="display: flex;flex-direction: row;" *ngFor="let label of labels">
+                <button mat-button id="sidenav-button-label">
+                  <mat-icon id="labelicon">label_outline</mat-icon>
+                  <label id="text">{{ label.labelName }}</label>
+                </button>
+            </div>
+          <button mat-button id="sidenav-button" (click)="editlabels()">
             <div class="displaytype">
             <div id="icon">
               <mat-icon>edit</mat-icon>
@@ -118,15 +124,15 @@
           </div>
           </button>
         <mat-divider></mat-divider>
-          <button mat-icon-button id="sidenav-button" [routerLink]="['/dashboard/archievenotes']">
+          <button mat-button id="sidenav-button" [routerLink]="['/dashboard/archievenotes']">
             <div class="displaytype">
             <div id="icon">
-              <mat-icon>archive</mat-icon>
+              <mat-icon style="margin-left: 0px;">archive</mat-icon>
             </div>
             <label id="text">Archive</label>
           </div>
           </button>
-          <button mat-icon-button id="sidenav-button" [routerLink]="['/dashboard/trashnotes']">
+          <button mat-button id="sidenav-button" [routerLink]="['/dashboard/trashnotes']">
             <div class="displaytype">
             <div id="icon">
               <mat-icon>delete</mat-icon>

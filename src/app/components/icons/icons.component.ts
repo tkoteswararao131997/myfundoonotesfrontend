@@ -49,36 +49,36 @@ export class IconsComponent implements OnInit {
   color(){
     console.log("Note color")
   }
-    colorsList = [
-      [
-        { 
-          colorCode: "rgba(198, 222, 255,1)", name: "Blue" 
-        },
-        { 
-          colorCode: "rgba(229, 228, 226,1)", name: "Gray" 
-        },
-        { 
-          colorCode: "rgba(230, 169, 236,1)", name: "Pink" 
-        },
-      ],
-      [
-        { 
-          colorCode: "rgba(233, 171, 23,1)", name: "Yellow" 
-        },
-        { 
-          colorCode: "rgba(249, 150, 107,1)", name: "Orange" 
-        },
-        { 
-          colorCode: "rgba(255,255,255,1)", name: "white" 
-        },
-        {
-          colorCode : "#00ff00" , name : "palegreen"
-        },
-        {
-          colorCode : "#ff0000" , name : "red"
-        }
-      ]
+  colorsList = [
+    [
+      { 
+        colorCode: "rgba(198, 222, 255,1)", name: "Blue" 
+      },
+      { 
+        colorCode: "rgba(229, 228, 226,1)", name: "Gray" 
+      },
+      { 
+        colorCode: "rgba(230, 169, 236,1)", name: "Pink" 
+      },
+      { 
+        colorCode: "rgba(233, 171, 23,1)", name: "violet" 
+      },
+    ],
+    [
+      { 
+        colorCode: "rgba(233, 171, 23,1)", name: "Yellow" 
+      },
+      { 
+        colorCode: "rgba(249, 150, 107,1)", name: "Orange" 
+      },
+      {
+        colorCode : "#00ff00" , name : "palegreen"
+      },
+      {
+        colorCode : "#ff0000" , name : "red"
+      }
     ]
+  ]
   changeColor(color)
   {
     this.noteservice.notecolor=color;

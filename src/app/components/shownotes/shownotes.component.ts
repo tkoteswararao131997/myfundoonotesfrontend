@@ -18,9 +18,10 @@ export class ShownotesComponent implements OnInit {
   openNote(note)
   {
     const dialogref=this.dialog.open(UpdatenoteComponent,{
-      width:"500px",height : "auto",
-      panelClass: "custom-dialog-container",
-      data: { note }
+      width:"500px",
+      height:"auto",
+      data: { note },
+     
     });
     dialogref.afterClosed().subscribe(result => {
       console.log("not updated");
