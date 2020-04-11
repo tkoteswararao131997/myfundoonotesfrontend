@@ -1,1 +1,21 @@
-<div class="editlabels">Edit label</div>
+<div class="editlabels">Edit labels</div>
+<div style="display:flex;flex-direction: row;margin-left: -25px;margin-top:20px;align-items: center;width:100%;">
+    <button mat-button mat-icon-button matTooltip="cancel" autofocus="off" type="reset">
+      <mat-icon class="clear">clear</mat-icon>
+    </button>
+    <input matInput class="text" placeholder="Create new label" [(ngModel)]="labelName" #labelInput autocomplete="off"/>
+    <button mat-button mat-icon-button matTooltip="Create label" class="icon-button" (click)="createLabel(labelName)">
+          <mat-icon class="check">check</mat-icon>
+    </button>
+ </div>
+ <div *ngFor="let label of labels">
+   <div style="display: flex;flex-direction: row; align-items: center;">
+    <div>
+   <button mat-button mat-icon-button matTooltip="delete" class="fordelete"><mat-icon>delete</mat-icon></button>
+  </div>
+   <div style="width: 62%;"><label class="fortext">{{label.labelName}}</label></div>
+   <div>
+   <button mat-button mat-icon-button matTooltip="edit" class="foredit"><mat-icon>edit</mat-icon></button>
+  </div>
+  </div>
+</div>

@@ -51,7 +51,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     CreatelabelComponent,
     ShowlabelComponent
   ],
-  entryComponents: [UpdatenoteComponent],
+  entryComponents: [UpdatenoteComponent,ShowlabelComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

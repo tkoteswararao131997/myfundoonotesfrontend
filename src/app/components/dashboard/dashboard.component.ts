@@ -31,8 +31,9 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
   editlabels()
   {
     const matdialogref = this.dialog.open(ShowlabelComponent,{
-      width : "500px",
-      height : "20px",
+      width : "300px",
+      minHeight : "300px",
+      maxHeight:"auto",
       panelClass: 'custom-dialog-container',
       data:this.labels
     });

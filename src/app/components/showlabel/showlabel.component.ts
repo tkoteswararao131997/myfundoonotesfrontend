@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, ɵisListLikeIterable } from '@angular/core';
 import {Label} from 'src/app/models/label';
 import { LabelService } from 'src/app/services/label.service';
 import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -8,15 +8,28 @@ import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./showlabel.component.scss']
 })
 export class ShowlabelComponent implements OnInit {
-  label:Label[];
+  labels:Label[];
+  newLabel: Label = new Label();
   constructor(
-    private labelserice : LabelService,
+    private labelservice : LabelService,
     private snackbar : MatSnackBar,
     public matdialogref : MatDialogRef<ShowlabelComponent>,
     @Inject(MAT_DIALOG_DATA) public data : any,
-  ) {this.label=this.data.label}
+  ){this.labels=this.data;}
 
   ngOnInit() {
   }
 
+  createLabel(labelInput : any)
+  {
+    console.log(this.labels);
+    this.newLabel.labelName=labelInput;
+    this.labelservice.createlabel(this.newLabel).subscribe((result:any)=>{
+      console.log(result);
+      if(result['statusMsg']=="true")
+      this.snackbar.open("label added","cancel",{duration : 5000});
+      else
+      this.snackbar.open("label already exists","cancel",{duration:5000});
+    })
+  }
 }
