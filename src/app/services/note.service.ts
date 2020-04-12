@@ -32,10 +32,10 @@ export class NoteService {
     return this.http.get(this.baseUrl+"/getallnotes",this.httpOptions);
   }
 
-  updatenote(note : Note,noteId : number):Observable<Note>
+  updatenote(note : Note,noteId : number)
   {
     console.log(this.httpOptions);
-    return this.http.put<Note>(this.baseUrl+"updatenote/"+noteId,note,this.httpOptions);
+    return this.http.put(this.baseUrl+"updatenote/"+noteId,note,this.httpOptions);
   }
   archieve(noteId:number)
   {
@@ -62,5 +62,9 @@ export class NoteService {
   changecolor(note :string , noteId : number)
   {
     return this.http.put(this.baseUrl+"changecolor/"+noteId,note,this.httpOptions);
+  }
+  ispinnote(noteId:number)
+  {
+    return this.http.put(this.baseUrl+"ispinnote/"+noteId,{},this.httpOptions);
   }
 }

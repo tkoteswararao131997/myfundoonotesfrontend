@@ -6,6 +6,7 @@ mat-card {
     min-width: 400px;
     margin: -24px;
     padding-top: 20px;
+    overflow-y: hidden;
 }
 mat-icon{
     opacity: 0.7;

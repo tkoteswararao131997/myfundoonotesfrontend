@@ -5,11 +5,13 @@
     border-right: none;
     outline:none;
     margin-top:-4px;
+    margin-left: 20px;
+    margin-right: 10px;
 }
 .check{
     opacity: 0.7;
     font-size: 17px;
-    margin-left: -15px;
+    margin-left: -12px;
 }
 .clear{
     opacity: 0.7;
@@ -18,10 +20,11 @@
 }
 .fordelete{
     margin-left:-15px;
+    margin-right:-40px;
 }
 .foredit{
-    // margin-left: 120px;
     align-items: flex-end;
+    margin-left: 28px;
 }
 .mat-icon{
     opacity: 0.7;
@@ -30,4 +33,13 @@
 .fortext{
     font-size: 15px;
     margin: 0 35px;
+    outline:none;
+    width: 168px;
+    border:none;
+}
+.fortext:focus {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom:1px solid black;
 }

@@ -15,9 +15,24 @@
     .icons{
         visibility: visible;
     }
+    .pinimage{
+      visibility: visible;
+    }
 }
 .text{
   border:none;
   outline:none;
   background-color: white;
+}
+.mat-chip{
+  font-size: 8px;
+}
+.pinimage{
+  width: 20px;
+  margin-top: -10px;
+  visibility: hidden;
+}
+.pinbutton{
+  border:none;
+  outline:none;
 }

@@ -34,6 +34,12 @@
     </button>
     <button mat-menu-item [matMenuTriggerFor]="addlabel" >
       Add label
-    </button> 
+    </button>
+    </mat-menu>
+  <mat-menu #addlabel="matMenu">
+    <div  *ngFor="let label of labels">
+      <mat-checkbox (click)="addlabeltonote(label)" style="margin-left: 10px;"></mat-checkbox>
+      <label mat-menu-item style="display: inline;">{{label.labelName}}</label>
+    </div>
   </mat-menu>
 </div>

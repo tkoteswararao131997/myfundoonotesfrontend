@@ -87,7 +87,6 @@
 </div>
   </mat-toolbar-row>
 </mat-toolbar>
-<!-- sidenav -->
 <mat-drawer-container>
   <mat-drawer #snav mode="side" [opened]="true">
     <mat-nav-list>
@@ -112,7 +111,7 @@
             <div style="display: flex;flex-direction: row;" *ngFor="let label of labels">
                 <button mat-button id="sidenav-button-label">
                   <mat-icon id="labelicon">label_outline</mat-icon>
-                  <label id="text">{{ label.labelName }}</label>
+                  <label id="text" (click)="getlabelnotes(label)" [routerLink]="['/dashboard/labelnotes']">{{ label.labelName }}</label>
                 </button>
             </div>
           <button mat-button id="sidenav-button" (click)="editlabels()">

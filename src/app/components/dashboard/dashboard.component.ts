@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { element } from 'protractor';
 import  {Label} from 'src/app/models/label';
 import { LabelService } from 'src/app/services/label.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { ShowlabelComponent } from '../showlabel/showlabel.component';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 @Component({
@@ -17,14 +17,14 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
  export class DashboardComponent { 
   grid: boolean = true;
   labels : Label[];
-  constructor(private router : Router,private labelservice : LabelService,private dialog : MatDialog) {}
+  labelnotes : Label[];
+  constructor(private router : Router,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar) {}
   onClickView() {
     return this.grid === true ? (this.grid = false) : (this.grid = true);
   }
   ngOnInit()
   {
     this.labelservice.getlabels().subscribe((result : any)=>{
-      console.log(result);
       this.labels=result['data'];
     });
   }
@@ -34,12 +34,25 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
       width : "300px",
       minHeight : "300px",
       maxHeight:"auto",
-      panelClass: 'custom-dialog-container',
-      data:this.labels
     });
     matdialogref.afterClosed().subscribe(result => {
       console.log("label closed");
     });
+  }
+
+  getlabelnotes(label)
+  {
+    console.log(label);
+    this.labelservice.getnotesfromlabel(label.labelId).subscribe((result:any)=>{
+      console.log(result);
+      if(result['statusMsg']=="true")
+      {
+        this.labelservice.myMethod(result);
+       this.snackbar.open("notes are","cancel",{duration:5000})
+      }
+      else
+      this.snackbar.open("no notes present","cancel",{duration:5000})
+    })
   }
 
 }

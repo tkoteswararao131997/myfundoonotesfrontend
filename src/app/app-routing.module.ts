@@ -9,6 +9,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { GetnotesComponent } from './components/getnotes/getnotes.component';
 import { ArchieveComponent } from './components/archieve/archieve.component';
 import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
+import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
 
 const routes: Routes = [
   {path : '',component:LoginComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
     { path: "notes", component:NotesComponent},
     {path : "getallnotes/:token",component:GetnotesComponent},
     {path : "archievenotes",component : ArchieveComponent},
-    {path : "trashnotes",component : TrashnotesComponent}
+    {path : "trashnotes",component : TrashnotesComponent},
+    {path : "labelnotes",component:LabelnotesComponent},
   ]
   },
 

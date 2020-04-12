@@ -10,4 +10,5 @@ export class Note {
   public remainderTime: string;
   public createDate: String;
   public updateDate: string;
+  public labels:Array<any>;
 }
