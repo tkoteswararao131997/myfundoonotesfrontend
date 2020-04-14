@@ -6,7 +6,7 @@
   <mat-card-title (click)="!note.trashed && openNote(note)" class="content">
     <textarea  class="text" cdkTextareaAutosize disabled [ngStyle]="{ 'background-color': note.color }">{{ note.title }}</textarea>
   </mat-card-title>
-  <button class="pinbutton" [ngStyle]="{ 'background-color': note.color }" (click)="ispin()"><img class="pinimage" src="/assets/img/pin.png" alt="keep"></button>
+  <button mat-button mat-icon-button matTooltip="pin note" class="pinbutton" [ngStyle]="{ 'background-color': note.color }" (click)="ispin()"><img class="pinimage" src="/assets/img/pin.png" alt="keep"></button>
 </div>
   <mat-card-content (click)="!note.trashed && openNote(note)"class="content">
     <textarea  class="text" cdkTextareaAutosize disabled [ngStyle]="{ 'background-color': note.color }">{{ note.description }}</textarea>

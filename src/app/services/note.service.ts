@@ -27,9 +27,9 @@ export class NoteService {
     return this.http.post(this.baseUrl + 'addnote',arr,this.httpOptions);
   }
 
-  public getnotes()
+  public getnotes():Observable<Note[]>
   {
-    return this.http.get(this.baseUrl+"/getallnotes",this.httpOptions);
+    return this.http.get<Note[]>(this.baseUrl+"/getallnotes",this.httpOptions);
   }
 
   updatenote(note : Note,noteId : number)

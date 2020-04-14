@@ -58,7 +58,7 @@ export class IconsComponent implements OnInit {
   colorsList = [
     [
       { 
-        colorCode: "rgba(198, 222, 255,1)", name: "Blue" 
+        colorCode: "#87CEEB", name: "skyBlue" 
       },
       { 
         colorCode: "rgba(229, 228, 226,1)", name: "Gray" 
@@ -81,7 +81,7 @@ export class IconsComponent implements OnInit {
         colorCode : "#00ff00" , name : "palegreen"
       },
       {
-        colorCode : "#ff0000" , name : "red"
+        colorCode : "#00FFFF" , name : "cyan"
       }
     ]
   ]

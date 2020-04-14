@@ -42,7 +42,6 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 
   getlabelnotes(label)
   {
-    console.log(label);
     this.labelservice.getnotesfromlabel(label.labelId).subscribe((result:any)=>{
       console.log(result);
       if(result['statusMsg']=="true")

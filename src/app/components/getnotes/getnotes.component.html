@@ -1,15 +1,15 @@
 
     <div fxLayout="column" style="margin-top:40px;margin-left:250px">
         <div style="flex-wrap: wrap;">
-                <p>pin notes</p><br>
+                <p style="margin-left:50px">pin notes</p><br>
                 <div *ngFor="let note of notes" class="noteCard">
-                    <app-shownotes *ngIf="!note.trashed&&!note.archieved&&note.pinned" [note]="note"></app-shownotes>
+                    <app-shownotes *ngIf="note.archieve==0 && note.trashed==0 && note.pinned==1" [note]="note"></app-shownotes>
             </div>
         </div>
         <div style="flex-wrap: wrap;">
-                <p>other notes</p><br>
+                <p style="margin-left:50px">other notes</p><br>
                 <div *ngFor="let note of notes" class="noteCard">
-                    <app-shownotes *ngIf="!note.trashed&&!note.archieved&&!note.pinned" [note]="note">
+                    <app-shownotes *ngIf="note.archieve==0 && note.trashed==0 && note.pinned==0" [note]="note">
                     </app-shownotes>
                 </div>
         </div>

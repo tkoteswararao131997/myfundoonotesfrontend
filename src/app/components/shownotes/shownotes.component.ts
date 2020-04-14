@@ -25,9 +25,6 @@ export class ShownotesComponent implements OnInit {
   {
     console.log(note);
     const dialogref=this.dialog.open(UpdatenoteComponent,{
-      width:"600px",
-      minHeight: "400px",
-      maxHeight:"auto",
       data: { note },
      
     });

@@ -45,7 +45,6 @@ createNote() {
       console.log(result);
       if(result['statusMsg']=="true")
         this._snackBar.open("note added","cancel",{duration : 5000});
-      window.location.reload();
     })
   }
   

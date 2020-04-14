@@ -32,7 +32,7 @@
   <div style="display:flex; flex-direction: row;" class="headericons">
     <div class="refresh">
       <button mat-button mat-icon-button matTooltip="refresh">
-        <mat-icon>refresh</mat-icon>
+        <mat-icon class="headericon">refresh</mat-icon>
       </button>
     </div>
      <div class="list">
@@ -48,7 +48,7 @@
             matTooltip="List view"
             (click)="onClickView()"
           >
-            <mat-icon>view_stream</mat-icon>
+            <mat-icon class="headericon">view_stream</mat-icon>
           </button>
           <button
           mat-button mat-icon-button
@@ -60,9 +60,10 @@
           </button>
         </div>
     </div>
+    <div style="display: flex;flex-direction: row;">
    <div class="settings">
       <button mat-button mat-icon-button class="settings" [matMenuTriggerFor]="menu" matTooltip="settings">
-        <mat-icon>settings</mat-icon>
+        <mat-icon class="headericon">settings</mat-icon>
         <mat-menu #menu="matMenu">
           <button mat-menu-item>Item 1</button>
           <button mat-menu-item>Item 2</button>
@@ -71,7 +72,7 @@
     </div>
    <div class="apps">
       <button mat-button mat-icon-button class="apps" [matMenuTriggerFor]="menu1" fxShow="true" matTooltip="Apps">
-        <mat-icon>apps</mat-icon>
+        <mat-icon class="headericon">apps</mat-icon>
           <mat-menu #menu1="matMenu">
             <button mat-menu-item>Item 1</button>
             <button mat-menu-item>Item 2</button>
@@ -79,9 +80,10 @@
       </button>
     </div>
     <div>
-    <button mat-button  mat-icon-button (click)="account()" fxShow="true" width="30">
-    <mat-icon> account_circle</mat-icon>
+    <button mat-button  mat-icon-button matTooltip="account" (click)="account()" fxShow="true" width="30">
+    <mat-icon class="headericon"> account_circle</mat-icon>
     </button>
+  </div>
   </div>
   </div>
 </div>
@@ -108,10 +110,14 @@
           </button>
         <mat-divider></mat-divider>
             <label id="labels">Labels</label>
-            <div style="display: flex;flex-direction: row;" *ngFor="let label of labels">
-                <button mat-button id="sidenav-button-label">
-                  <mat-icon id="labelicon">label_outline</mat-icon>
-                  <label id="text" (click)="getlabelnotes(label)" [routerLink]="['/dashboard/labelnotes']">{{ label.labelName }}</label>
+            <div *ngFor="let label of labels">
+                <button mat-button id="sidenav-button-label" (click)="getlabelnotes(label)" [routerLink]="['/dashboard/labelnotes']">
+                  <div class="displaytype">
+                    <div id="icon">
+                  <mat-icon>label_outline</mat-icon>
+                  </div>
+                  <label id="text">{{ label.labelName }}</label>
+                </div>
                 </button>
             </div>
           <button mat-button id="sidenav-button" (click)="editlabels()">

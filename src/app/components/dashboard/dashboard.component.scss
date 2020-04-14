@@ -23,7 +23,6 @@
 }
 .headericons{
   margin-left: 15%;
-  color:rgba(192, 192, 192, 0.979);
 }
 .form{
   border:1px solid grey;
@@ -95,6 +94,13 @@ btn-upload input[type="file"] {
   border-bottom-right-radius: 30vh;
   width: 100%;
 }
+#sidenav-button-label:focus {
+  background-color: rgba(255, 196, 0, 0.2);
+  margin-top: 3px;
+  border-top-right-radius: 30vh;
+  border-bottom-right-radius: 30vh;
+  width: 100%;
+}
 #sidenav-button {
   border-top-right-radius: 30vh;
   border-bottom-right-radius: 30vh;
@@ -111,7 +117,7 @@ btn-upload input[type="file"] {
   width: 100%;
   height: 40px;
   margin-top : 15px;
-  right:60px;
+  right:0px;
 }
 #labelicon{
   margin-right:40px;
@@ -120,6 +126,10 @@ btn-upload input[type="file"] {
 // #sidenav-button:hover{
 //   background-color: silver;
 // }
+.headericon{
+  opacity: 0.7;
+  font-size: 21px;
+}
 #icon{
   opacity: 0.7;
   font-size: 21px;
