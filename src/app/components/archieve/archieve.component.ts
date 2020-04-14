@@ -11,11 +11,17 @@ export class ArchieveComponent implements OnInit {
   notes:Note[];
   constructor(private noteservice : NoteService){}
     ngOnInit() {
+      this.noteservice.autoRefresh.subscribe(()=>{
+        this.getarchievenotes();
+      });
+      this.getarchievenotes();
+    
+  }
+  getarchievenotes()
+  {
     this.noteservice.getarchievenotes().subscribe((result : any)=>{
       console.log(result);
       this.notes=result['data'];
-    })
-  }
-
-
+  });
+}
 }

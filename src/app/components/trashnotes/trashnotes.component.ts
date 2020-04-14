@@ -11,9 +11,15 @@ export class TrashnotesComponent implements OnInit {
   trashnotes : Note[]
   constructor(private noteservice : NoteService,private snackbar : MatSnackBar) { }
   ngOnInit() {
-
+    this.noteservice.autoRefresh.subscribe(()=>{
+      this.gettrashnotes();
+    })
+    this.gettrashnotes();
+  }
+  gettrashnotes()
+  {
     this.noteservice.gettrashnotes().subscribe((result : any) =>{
       this.trashnotes=result['data'];
     })
-  }
+}
 }

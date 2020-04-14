@@ -23,4 +23,3 @@ export class LabelnotesComponent implements OnInit {
   }
 
 }
-

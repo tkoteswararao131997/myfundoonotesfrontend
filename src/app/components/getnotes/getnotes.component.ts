@@ -14,25 +14,20 @@ export class GetnotesComponent implements OnInit {
     private _httpClient: HttpClient,private noteservice : NoteService) { }
     notes:Note[];
     ngOnInit() {
-    // this.noteService.autoRefesh.subscribe(() => {
-    //   this.getAllNotes();
-    // });
-    // this.getAllNotes();
-
-    this.noteservice.getnotes().subscribe((result : any)=>{
-      console.log(result);
-      this.notes=result;
-    })
+    this.noteservice.autoRefresh.subscribe(()=>{
+      this.getAllNotes();
+    });
+    this.getAllNotes();
   }
-  // getAllNotes() {
-  //   this.noteService.getAllNotes().subscribe(
-  //     (response: any) => {
-  //       console.log(response);
-  //     this.notes=response; 
-  //     },
+  getAllNotes() {
+    this.noteservice.getnotes().subscribe(
+      (response: any) => {
+        console.log(response);
+      this.notes=response; 
+      },
       
-  //   );
-  // }
+    );
+  }
 
 
 }

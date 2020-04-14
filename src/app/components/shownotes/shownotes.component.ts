@@ -19,7 +19,16 @@ export class ShownotesComponent implements OnInit {
   constructor(private noteservice : NoteService,private dialog:MatDialog,private snackbar : MatSnackBar,private labelservice : LabelService) { }
 
   ngOnInit() {
-      this.labellist=this.note.labels;
+      this.noteservice.autoRefresh.subscribe(()=>{
+        this.getlabelsfromnote();
+      })
+      this.getlabelsfromnote();
+    }
+    getlabelsfromnote()
+    {
+      // this.noteservice.getlabelsfromnote(this.note.noteId).subscribe((result:any)=>{
+      //   console.log(result);
+        (this.labellist=this.note.labels);
     }
   openNote(note)
   {
@@ -29,7 +38,6 @@ export class ShownotesComponent implements OnInit {
      
     });
     dialogref.afterClosed().subscribe(result => {
-      console.log("not updated");
     });
   }
   deleteForever(){
@@ -37,7 +45,6 @@ export class ShownotesComponent implements OnInit {
       if(result['statusMsg']=="true")
       {
       this.snackbar.open("note deleted","cancel",{duration : 5000});
-      window.location.reload();
       }
       else
       this.snackbar.open("error while deleting","cancel",{duration : 5000});
@@ -49,7 +56,6 @@ export class ShownotesComponent implements OnInit {
       if(result['statusMsg']=="true")
       {
       this.snackbar.open("note restored","cancel",{duration : 5000});
-      window.location.reload();
       }
       else
       this.snackbar.open("error while restoring","cancel",{duration : 5000});
@@ -62,7 +68,6 @@ export class ShownotesComponent implements OnInit {
       if(result['statusMsg']=="true")
       {
       this.snackbar.open("note pinned","cancel",{duration : 5000});
-      window.location.reload();
       }
       else
       this.snackbar.open("error while pinning","cancel",{duration : 5000});
@@ -74,7 +79,6 @@ export class ShownotesComponent implements OnInit {
       if(result['statusMsg']=="true")
       {
       this.snackbar.open("label deleted in note","cancel",{duration : 5000});
-      window.location.reload();
       }
       else
       this.snackbar.open("error while deleting label","cancel",{duration : 5000});
@@ -86,7 +90,6 @@ export class ShownotesComponent implements OnInit {
       if(result['statusMsg']=="true")
       {
       this.snackbar.open("label deleted in note","cancel",{duration : 5000});
-      window.location.reload();
       }
       else
       this.snackbar.open("error while deleting label","cancel",{duration : 5000});

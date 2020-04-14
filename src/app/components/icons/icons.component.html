@@ -41,7 +41,9 @@
       <button mat-button mat-icon-button matTooltip="cancel" autofocus="off" type="reset" class="clear">
         <mat-icon>clear</mat-icon>
       </button>
+      <div class="display-labels" (click)="$event.stopPropagation();">
       <input matInput class="text" placeholder="Create new label" [(ngModel)]="labelName" #labelInput autocomplete="off"/>
+    </div>
       <button mat-button mat-icon-button matTooltip="Create label" class="icon-button" (click)="createLabel(labelName)" class="check">
             <mat-icon>check</mat-icon>
       </button>

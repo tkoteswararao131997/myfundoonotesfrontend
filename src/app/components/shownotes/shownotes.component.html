@@ -11,7 +11,7 @@
   <mat-card-content (click)="!note.trashed && openNote(note)"class="content">
     <textarea  class="text" cdkTextareaAutosize disabled [ngStyle]="{ 'background-color': note.color }">{{ note.description }}</textarea>
     <mat-chip-list >
-      <mat-chip *ngFor="let label of labellist" [selectable]="selectable" [removable]="removable" 
+      <mat-chip *ngFor="let label of labellist"  fxLayout="row" [selectable]="selectable" [removable]="removable" 
       (removed)="remove(label)">
       {{label.labelName}}
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>

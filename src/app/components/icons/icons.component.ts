@@ -12,18 +12,26 @@ import { LabelService } from 'src/app/services/label.service';
 })
 export class IconsComponent implements OnInit {
   private selected : any=false;
+  newLabel: Label = new Label();
+  isedit : boolean = false;
   constructor(private noteservice : NoteService,private snackbar:MatSnackBar,private labelservice : LabelService) { }
   @Input() note: Note;
   labels : Label[];
   ngOnInit() {
+    this.labelservice.autoRefresh.subscribe(()=>{
+        this.getlabels();
+    });
+    this.getlabels();
+  }
+
+  getlabels()
+  {
     this.labelservice.getlabels().subscribe((result : any)=>{
       this.labels=result['data'];
-    });
-  }
+  });
+}
   doarchive(){
-      console.log(this.note);
       this.noteservice.archieve(this.note.noteId).subscribe((result:any)=>{
-        console.log(result);
         if(result['statusMsg']=="true")
         {
           this.snackbar.open("note was archieved","cancel",{duration : 5000});
@@ -36,9 +44,7 @@ export class IconsComponent implements OnInit {
 
   toTrash()
   {
-    console.log(this.note);
       this.noteservice.trashed(this.note.noteId).subscribe((result:any)=>{
-        console.log(result);
         if(result['statusMsg']=="true")
         {
           this.snackbar.open("note was trashed","cancel",{duration : 5000});
@@ -105,6 +111,19 @@ export class IconsComponent implements OnInit {
       else
       this.snackbar.open("error occuring while label adding to note","cancel",{duration : 5000});
 
+    })
+  }
+  createLabel(labelInput : any)
+  {
+    console.log(this.labels);
+    this.newLabel.labelName=labelInput;
+    this.labelservice.createlabel(this.newLabel).subscribe((result:any)=>{
+      console.log(result);
+      if(result['statusMsg']=="true")
+      this.snackbar.open("label added","cancel",{duration : 5000});
+      else
+      this.snackbar.open("label already exists","cancel",{duration:5000});
+      this.isedit=false;
     })
   }
 }
