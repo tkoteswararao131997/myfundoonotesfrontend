@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Note} from '../models/note';
 import { Observable, Subject } from 'rxjs';
-import { HttpService } from './http.service';
 import { ɵNgClassImplProvider__POST_R3__ } from '@angular/common';
 import{Color} from 'src/app/models/color';
 import { tap } from 'rxjs/operators';
 import { not } from '@angular/compiler/src/output/output_ast';
+import { HttpService } from 'http.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -96,9 +96,28 @@ export class NoteService {
   }
   // getlabelsfromnote(noteId : number)
   // {
-  //   return this.http.get(this.baseUrl+"getlabelsfromnote/"+noteId,this.httpOptions)
-  //   .pipe(tap(()=>{
-  //     this.subject.next();
-  //   }));
+  //   return this.http.get(this.baseUrl+"getlabelsfromnote/"+noteId,this.httpOptions);
   // }
+  createreminder(remind : string,noteId : number)
+  {
+    return this.http.put(this.baseUrl+"remindme/"+noteId,remind,this.httpOptions)
+    .pipe(tap(()=>{
+      this.subject.next();
+    }));
+  }
+
+  getremindernotes()
+  {
+    return this.http.get(this.baseUrl+"getremindernotes",this.httpOptions)
+    .pipe(tap(()=>{
+      this.subject.next();
+    }));
+  }
+  deleteReminder(noteId : number)
+  {
+    return this.http.put(this.baseUrl+"deletereminder/"+noteId,{},this.httpOptions)
+    .pipe(tap(()=>{
+      this.subject.next();
+    }));
+  }
 }

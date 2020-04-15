@@ -21,10 +21,18 @@ export class ShowlabelComponent implements OnInit {
   ){}
 
   ngOnInit() {
+    this.labelservice.autoRefresh.subscribe(()=>{
+      this.getlabels();
+    })
+    this.getlabels();
+  
+}
+  getlabels()
+  {
     this.labelservice.getlabels().subscribe((result : any)=>{
       this.labels=result['data'];
-  });
-}
+    });
+  }
 
   createLabel(labelInput : any)
   {

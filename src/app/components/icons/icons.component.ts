@@ -11,6 +11,7 @@ import { LabelService } from 'src/app/services/label.service';
   styleUrls: ['./icons.component.scss']
 })
 export class IconsComponent implements OnInit {
+  datetime:any;
   private selected : any=false;
   newLabel: Label = new Label();
   isedit : boolean = false;
@@ -124,6 +125,14 @@ export class IconsComponent implements OnInit {
       else
       this.snackbar.open("label already exists","cancel",{duration:5000});
       this.isedit=false;
+    })
+  }
+
+  reminder(datetime)
+  {
+    console.log(datetime);
+    this.noteservice.createreminder(datetime,this.note.noteId).subscribe((result:any)=>{
+      this.note.reminde=result['data.reminde'];
     })
   }
 }

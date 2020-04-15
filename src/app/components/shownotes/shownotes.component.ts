@@ -6,6 +6,7 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { LabelService } from 'src/app/services/label.service';
 import { Label } from 'src/app/models/label';
+import { PartialObserver } from 'rxjs';
 @Component({
   selector: 'app-shownotes',
   templateUrl: './shownotes.component.html',
@@ -17,22 +18,23 @@ export class ShownotesComponent implements OnInit {
   labellist:Label[];
   @Input() note: Note;
   constructor(private noteservice : NoteService,private dialog:MatDialog,private snackbar : MatSnackBar,private labelservice : LabelService) { }
-
+  // public observer: PartialObserver<any>;
   ngOnInit() {
-      this.noteservice.autoRefresh.subscribe(()=>{
-        this.getlabelsfromnote();
-      })
-      this.getlabelsfromnote();
+      // this.noteservice.autoRefresh.subscribe(()=>{
+      //   this.getlabelsfromnote();
+      // })
+      // this.getlabelsfromnote();
+      this.labellist=this.note.labels;
     }
-    getlabelsfromnote()
-    {
-      // this.noteservice.getlabelsfromnote(this.note.noteId).subscribe((result:any)=>{
-      //   console.log(result);
-        (this.labellist=this.note.labels);
-    }
+//     getlabelsfromnote()
+//     {
+//        this.noteservice.getlabelsfromnote(this.note.noteId).subscribe((result:any)=>{
+//         console.log(result);
+//         this.labellist=this.note.labels;
+//   });
+// }
   openNote(note)
   {
-    console.log(note);
     const dialogref=this.dialog.open(UpdatenoteComponent,{
       data: { note },
      
@@ -93,6 +95,17 @@ export class ShownotesComponent implements OnInit {
       }
       else
       this.snackbar.open("error while deleting label","cancel",{duration : 5000});
+    })
+  }
+  removeReminder()
+  {
+    this.noteservice.deleteReminder(this.note.noteId).subscribe((result : any)=>{
+      if(result['statusMsg']=="true")
+      {
+      this.snackbar.open("reminder deleted","cancel",{duration : 5000});
+      }
+      else
+      this.snackbar.open("error while deleting reminder","cancel",{duration : 5000});
     })
   }
 }

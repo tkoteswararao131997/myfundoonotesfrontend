@@ -33,6 +33,8 @@ import { CreatelabelComponent } from './components/createlabel/createlabel.compo
 import { ShowlabelComponent } from './components/showlabel/showlabel.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { RemindernotesComponent } from './components/remindernotes/remindernotes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,8 @@ import { LabelnotesComponent } from './components/labelnotes/labelnotes.componen
     TrashnotesComponent,
     CreatelabelComponent,
     ShowlabelComponent,
-    LabelnotesComponent
+    LabelnotesComponent,
+    RemindernotesComponent
   ],
   entryComponents: [UpdatenoteComponent,ShowlabelComponent],
   imports: [
@@ -70,6 +73,8 @@ import { LabelnotesComponent } from './components/labelnotes/labelnotes.componen
     MatTooltipModule,
     FlexLayoutModule,
     MatChipsModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
   ],
   providers: [UserService,NoteService],
   bootstrap: [AppComponent]
