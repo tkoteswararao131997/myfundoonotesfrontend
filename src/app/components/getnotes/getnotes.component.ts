@@ -15,13 +15,14 @@ export class GetnotesComponent implements OnInit {
     notes:Note[];
     ngOnInit() {
     this.noteservice.autoRefresh.subscribe(()=>{
-      this.getAllNotes();
+       this.getAllNotes();
     });
     this.getAllNotes();
   }
   getAllNotes() {
     this.noteservice.getnotes().subscribe(
       (response: any) => {
+        console.log(response);
       this.notes=response; 
       },
       

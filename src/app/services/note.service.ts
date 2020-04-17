@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Note} from '../models/note';
+import {Label} from '../models/label';
 import { Observable, Subject } from 'rxjs';
 import { ɵNgClassImplProvider__POST_R3__ } from '@angular/common';
 import{Color} from 'src/app/models/color';
@@ -94,10 +95,10 @@ export class NoteService {
       this.subject.next();
     }));
   }
-  // getlabelsfromnote(noteId : number)
-  // {
-  //   return this.http.get(this.baseUrl+"getlabelsfromnote/"+noteId,this.httpOptions);
-  // }
+  getlabelsfromnote(noteId : number):Observable<Label[]>
+  {
+    return this.http.get<Label[]>(this.baseUrl+"getlabelsfromnote/"+noteId,this.httpOptions);
+  }
   createreminder(remind : string,noteId : number)
   {
     return this.http.put(this.baseUrl+"remindme/"+noteId,remind,this.httpOptions)

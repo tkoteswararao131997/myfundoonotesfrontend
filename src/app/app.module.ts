@@ -13,7 +13,7 @@ import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassw
 // import {FundoonoteserviceService} from './services/fundoonoteservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSidenavModule, MatSidenav} from '@angular/material/sidenav';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 import { MatSnackBarModule } from "@angular/material";
 import { LayoutModule } from '@angular/cdk/layout';
@@ -75,6 +75,7 @@ import { RemindernotesComponent } from './components/remindernotes/remindernotes
     MatChipsModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+    MatSidenavModule,
   ],
   providers: [UserService,NoteService],
   bootstrap: [AppComponent]

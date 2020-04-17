@@ -42,15 +42,16 @@
       Add label
     </button>
     </mat-menu>
-  <mat-menu #addlabel="matMenu">
-    <div style="display:flex;flex-direction: row;margin-left: -15px;margin-top:20px;align-items: center;width:100%;">
+  <mat-menu #addlabel="matMenu" style="width:200px;">
+    <div style="height:300px;">
+    <div style="display:flex;flex-direction: row;margin-top:20px;align-items: center;width:90%;">
       <button mat-button mat-icon-button matTooltip="cancel" autofocus="off" type="reset" class="clear">
         <mat-icon>clear</mat-icon>
       </button>
       <div class="display-labels" (click)="$event.stopPropagation();">
       <input matInput class="text" placeholder="Create new label" [(ngModel)]="labelName" #labelInput autocomplete="off"/>
     </div>
-      <button mat-button mat-icon-button matTooltip="Create label" class="icon-button" (click)="createLabel(labelName)" class="check">
+      <button style="margin-left:-40px" mat-button mat-icon-button matTooltip="Create label" class="icon-button" (click)="createLabelAddNote(labelName)" class="check">
             <mat-icon>check</mat-icon>
       </button>
    </div>
@@ -58,5 +59,6 @@
       <mat-checkbox (click)="addlabeltonote(label)" style="margin-left: 10px;"></mat-checkbox>
       <label mat-menu-item style="display: inline;">{{label.labelName}}</label>
     </div>
+  </div>
   </mat-menu>
 </div>

@@ -11,22 +11,24 @@
     outline: none;
   }
 .closedmatcard{
-    width:30%;
+    width:42%;
     height:3px;
     position:sticky;
-    left:35%;
+    left:25%;
     background-color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
     z-index:1000;
+    top: 20px;
 }
 .openedmatcard{
-    width:30%;
+    width:42%;
     height:auto;
-    left:35%;
+    left:25%;
     background-color:white;
     align-items: center;
+    top:20px;
 }
 .input{
     width:95%;

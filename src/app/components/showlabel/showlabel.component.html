@@ -1,6 +1,6 @@
 <div style="overflow-x: hidden;">
   <div class="editlabels">Edit labels</div>
-  <div style="display:flex;flex-direction: row;margin-left: -15px;margin-top:20px;align-items: center;width:100%;">
+  <div style="display:flex;flex-direction: row;margin-top:20px;align-items: center;width:100%;">
       <button mat-button mat-icon-button matTooltip="cancel" autofocus="off" type="reset" class="clear">
         <mat-icon>clear</mat-icon>
       </button>
@@ -10,7 +10,7 @@
       </button>
    </div>
    <div *ngFor="let label of labels">
-     <div style="display: flex;flex-direction: row; align-items: center;">
+     <div style="display: flex;flex-direction: row; align-items: center;margin-left:16px">
       <div>
      <button mat-button mat-icon-button matTooltip="delete" class="fordelete" (click)="deletelabel(label)"><mat-icon>delete</mat-icon></button>
     </div>

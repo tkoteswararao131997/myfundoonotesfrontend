@@ -1,4 +1,4 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit,Input,Output, EventEmitter} from '@angular/core';
 import {Note} from 'src/app/models/note';
 import { NoteService } from 'src/app/services/note.service';
 import { MatSnackBar } from '@angular/material';
@@ -14,21 +14,25 @@ export class IconsComponent implements OnInit {
   datetime:any;
   private selected : any=false;
   newLabel: Label = new Label();
+  notelabels:Label[]=[];
   isedit : boolean = false;
+  @Output() onAddNote: EventEmitter<any> = new EventEmitter<any>();
   constructor(private noteservice : NoteService,private snackbar:MatSnackBar,private labelservice : LabelService) { }
   @Input() note: Note;
   labels : Label[];
   ngOnInit() {
     this.labelservice.autoRefresh.subscribe(()=>{
-        this.getlabels();
-    });
+      this.getlabels();
+    })
     this.getlabels();
   }
 
   getlabels()
   {
     this.labelservice.getlabels().subscribe((result : any)=>{
+      console.log(result);
       this.labels=result['data'];
+      // this.labelservice.subject.next();
   });
 }
   doarchive(){
@@ -79,16 +83,30 @@ export class IconsComponent implements OnInit {
     ],
     [
       { 
-        colorCode: "rgba(233, 171, 23,1)", name: "Yellow" 
+        colorCode: "FFCA33", name: "Yellow" 
       },
       { 
         colorCode: "rgba(249, 150, 107,1)", name: "Orange" 
       },
       {
-        colorCode : "#00ff00" , name : "palegreen"
+        colorCode : "A2FF33" , name : "palegreen"
       },
       {
-        colorCode : "#00FFFF" , name : "cyan"
+        colorCode : "33FFBE" , name : "cyan"
+      }
+    ],
+    [
+      { 
+        colorCode: "FFCA33", name: "Yellow" 
+      },
+      { 
+        colorCode: "rgba(249, 150, 107,1)", name: "Orange" 
+      },
+      {
+        colorCode : "A2FF33" , name : "palegreen"
+      },
+      {
+        colorCode : "33FFBE" , name : "cyan"
       }
     ]
   ]
@@ -104,30 +122,38 @@ export class IconsComponent implements OnInit {
   }
   addlabeltonote(label)
   {
-    console.log(label);
     this.labelservice.addlabeltonote(this.note.noteId,label.labelId).subscribe((result : any)=>{
-      console.log(this.note);
       if(result['statusMsg']="true")
+      {
+        this.onAddNote.emit(result.data);
+        // console.log("initial---------"+this.notelabels);
+        // this.notelabels.push(result['data']);
+         console.log(result.data);
+        // console.log("after--------`---"+this.notelabels)
+      // this.labellist= this.labellist.filter(x => x.labelId != label.labelId);
       this.snackbar.open("label added to note","cancel",{duration : 5000});
+      }
       else
       this.snackbar.open("error occuring while label adding to note","cancel",{duration : 5000});
 
     })
   }
-  createLabel(labelInput : any)
+  createLabelAddNote(labelInput : any)
   {
     console.log(this.labels);
     this.newLabel.labelName=labelInput;
-    this.labelservice.createlabel(this.newLabel).subscribe((result:any)=>{
-      console.log(result);
+    this.labelservice.createlabeladdnote(this.newLabel,this.note.noteId).subscribe((result:any)=>{
       if(result['statusMsg']=="true")
+      {
+      this.notelabels.push(result['data']);
+      console.log(this.notelabels);
       this.snackbar.open("label added","cancel",{duration : 5000});
+      }
       else
       this.snackbar.open("label already exists","cancel",{duration:5000});
       this.isedit=false;
     })
   }
-
   reminder(datetime)
   {
     console.log(datetime);

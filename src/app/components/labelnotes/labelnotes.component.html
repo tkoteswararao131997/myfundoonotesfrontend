@@ -1,5 +1,5 @@
 <div style="margin-top:40px;margin-left:250px" fxLayout="row">
     <div *ngFor="let note of labelnotes" class="noteCard"> 
-        <app-shownotes [note]="note"></app-shownotes>
+        <app-shownotes *ngIf="note.trashed==0" [note]="note"></app-shownotes>
     </div>
 </div>

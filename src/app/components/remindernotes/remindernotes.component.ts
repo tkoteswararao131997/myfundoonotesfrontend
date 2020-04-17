@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from '../../services/note.service';
 import {Note} from 'src/app/models/note'
 @Component({
@@ -12,14 +12,17 @@ export class RemindernotesComponent implements OnInit {
 
   ngOnInit() {
     this.noteservice.autoRefresh.subscribe(()=>{
-      this.getremindernotes();
-    })
-    this.getremindernotes();
+       this.getAllNotes();
+    });
+    this.getAllNotes();
   }
-  getremindernotes()
-  {
-    this.noteservice.getremindernotes().subscribe((result : any)=>{
-      this.remindernotes=result['data'];
-    })
+  getAllNotes() {
+    this.noteservice.getnotes().subscribe(
+      (response: any) => {
+        console.log(response);
+      this.remindernotes=response; 
+      },
+      
+    );
   }
 }

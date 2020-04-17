@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, PartialObserver } from 'rxjs';
 import { map, shareReplay, reduce } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { element } from 'protractor';
@@ -18,6 +18,7 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
   grid: boolean = true;
   labels : Label[];
   labelnotes : Label[];
+  public observer: PartialObserver<any>;
   constructor(private router : Router,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar) {}
   onClickView() {
     return this.grid === true ? (this.grid = false) : (this.grid = true);
@@ -25,7 +26,7 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
   ngOnInit()
   {
     this.labelservice.autoRefresh.subscribe(()=>{
-      this.getlabels();
+    this.getlabels();
     })
     this.getlabels();
   }
@@ -39,8 +40,8 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
   {
     const matdialogref = this.dialog.open(ShowlabelComponent,{
       width : "300px",
-      minHeight : "300px",
-      maxHeight:"auto",
+      minHeight : "200px",
+      maxHeight:"400px",
     });
     matdialogref.afterClosed().subscribe(result => {
       console.log("label closed");
@@ -53,7 +54,7 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
       console.log(result);
       if(result['statusMsg']=="true")
       {
-        this.labelservice.myMethod(result);
+        this.labelservice.myMethod(result)
        this.snackbar.open("notes are","cancel",{duration:5000})
       }
       else

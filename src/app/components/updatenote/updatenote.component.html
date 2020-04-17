@@ -5,10 +5,10 @@
   [ngStyle]="{'background-color': note.color}"
   >
   <mat-card-title>
-    <input type="text" class="text" [(ngModel)]="note.title" [ngStyle]="{ 'background-color': note.color }">
+    <input type="text" class="text" [(ngModel)]="note.title" [ngStyle]="{ 'background-color': note.color }" spellcheck="false">
   </mat-card-title>
   <mat-card-content>
-    <input type="text" class="text" [(ngModel)]="note.description" [ngStyle]="{ 'background-color': note.color }">
+    <input type="text" class="text" [(ngModel)]="note.description" [ngStyle]="{ 'background-color': note.color }" spellcheck="false">
   </mat-card-content>
   <!-- <div class="lastEdit" *ngIf="note.updatedDate != null" align="end">
     <span style="margin-top: 8px;"
@@ -17,7 +17,7 @@
   </div> -->
   <mat-card-footer class="icons">
     <app-icons [note]="note"></app-icons>
-    <button mat-button (click)="onSubmit() || (open = !open)" style="margin-left: 20%;">
+    <button mat-button (click)="onSubmit() || (open = !open)" style="margin-left: 43%;">
       Close
     </button>
   </mat-card-footer>
