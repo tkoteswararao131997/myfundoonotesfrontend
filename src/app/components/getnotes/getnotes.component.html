@@ -2,13 +2,13 @@
     <div fxLayout="column" style="margin-top:40px;margin-left:150px" >
         <div style="flex-wrap: wrap;">
                 <p style="margin-left:50px">pin notes</p><br>
-                <div *ngFor="let note of notes" class="noteCard">
+                <div *ngFor="let note of notes | searchnote : searchText " class="noteCard">
                     <app-shownotes *ngIf="note.archieve==0 && note.trashed==0 && note.pinned==1" [note]="note"></app-shownotes>
             </div>
         </div>
         <div style="flex-wrap: wrap;">
                 <p style="margin-left:50px">other notes</p><br>
-                <div *ngFor="let note of notes" class="noteCard">
+                <div *ngFor="let note of notes | searchnote : searchText" class="noteCard">
                     <app-shownotes *ngIf="note.archieve==0 && note.trashed==0 && note.pinned==0" [note]="note">
                     </app-shownotes>
                 </div>

@@ -44,18 +44,27 @@
     </mat-menu>
   <mat-menu #addlabel="matMenu" style="width:200px;">
     <div style="height:300px;">
+      <div style="display:flex;flex-direction: row;margin-top:20px;align-items: center;width:90%;">
+        <button mat-button mat-icon-button matTooltip="search" autofocus="off" type="reset" class="clear">
+          <mat-icon (click)="createShow(labelName.value)">search</mat-icon>
+        </button>
+        <div class="display-labels" (click)="$event.stopPropagation();">
+        <input matInput class="text" placeholder="Enter label name" #labelName (keyup)="0" autocomplete="off"/>
+      </div>
+    </div>
     <div style="display:flex;flex-direction: row;margin-top:20px;align-items: center;width:90%;">
       <button mat-button mat-icon-button matTooltip="cancel" autofocus="off" type="reset" class="clear">
         <mat-icon>clear</mat-icon>
       </button>
       <div class="display-labels" (click)="$event.stopPropagation();">
-      <input matInput class="text" placeholder="Create new label" [(ngModel)]="labelName" #labelInput autocomplete="off"/>
+      <input matInput class="text" placeholder="Create new label" [(ngModel)]="label" #labelInput autocomplete="off"/>
     </div>
-      <button style="margin-left:-40px" mat-button mat-icon-button matTooltip="Create label" class="icon-button" (click)="createLabelAddNote(labelName)" class="check">
+      <button style="margin-left:-40px" mat-button mat-icon-button matTooltip="Create label" class="icon-button" 
+      (click)="createLabelAddNote(label)" class="check">
             <mat-icon>check</mat-icon>
       </button>
    </div>
-    <div  *ngFor="let label of labels">
+    <div  *ngFor="let label of labels | filter:labelName.value">
       <mat-checkbox (click)="addlabeltonote(label)" style="margin-left: 10px;"></mat-checkbox>
       <label mat-menu-item style="display: inline;">{{label.labelName}}</label>
     </div>

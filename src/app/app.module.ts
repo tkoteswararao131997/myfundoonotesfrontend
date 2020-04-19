@@ -35,6 +35,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { RemindernotesComponent } from './components/remindernotes/remindernotes.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { SearchnotePipe } from './pipes/searchnote.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +56,9 @@ import { RemindernotesComponent } from './components/remindernotes/remindernotes
     CreatelabelComponent,
     ShowlabelComponent,
     LabelnotesComponent,
-    RemindernotesComponent
+    RemindernotesComponent,
+    FilterPipe,
+    SearchnotePipe
   ],
   entryComponents: [UpdatenoteComponent,ShowlabelComponent],
   imports: [

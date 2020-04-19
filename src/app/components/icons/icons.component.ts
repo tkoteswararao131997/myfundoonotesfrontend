@@ -69,44 +69,44 @@ export class IconsComponent implements OnInit {
   colorsList = [
     [
       { 
-        colorCode: "#87CEEB", name: "skyBlue" 
+        colorCode: "#FF33AC", name: "INDIANRED" 
       },
       { 
-        colorCode: "rgba(229, 228, 226,1)", name: "Gray" 
+        colorCode: "#DD33FF", name: "pink" 
       },
       { 
-        colorCode: "rgba(230, 169, 236,1)", name: "Pink" 
+        colorCode: "#4233FF", name: "violet" 
       },
       { 
-        colorCode: "rgba(233, 171, 23,1)", name: "violet" 
+        colorCode: "#33F6FF", name: "cyan" 
       },
     ],
     [
       { 
-        colorCode: "FFCA33", name: "Yellow" 
+        colorCode: "#55FF33", name: "green" 
       },
       { 
-        colorCode: "rgba(249, 150, 107,1)", name: "Orange" 
+        colorCode: "#E0FF33", name: "yellow" 
       },
       {
-        colorCode : "A2FF33" , name : "palegreen"
+        colorCode : "#FFB533" , name : "orange"
       },
       {
-        colorCode : "33FFBE" , name : "cyan"
+        colorCode : "#FFA07A" , name : "LIGHTSALMON"
       }
     ],
     [
       { 
-        colorCode: "FFCA33", name: "Yellow" 
+        colorCode: "#F2EDEB", name: "silver" 
       },
       { 
-        colorCode: "rgba(249, 150, 107,1)", name: "Orange" 
+        colorCode: "#008080", name: "TEAL" 
       },
       {
-        colorCode : "A2FF33" , name : "palegreen"
+        colorCode : "#7B4E12" , name : "brown"
       },
       {
-        colorCode : "33FFBE" , name : "cyan"
+        colorCode : "#B9F03B" , name : "LIME"
       }
     ]
   ]
@@ -145,6 +145,7 @@ export class IconsComponent implements OnInit {
     this.labelservice.createlabeladdnote(this.newLabel,this.note.noteId).subscribe((result:any)=>{
       if(result['statusMsg']=="true")
       {
+      this.onAddNote.emit(result.data);
       this.notelabels.push(result['data']);
       console.log(this.notelabels);
       this.snackbar.open("label added","cancel",{duration : 5000});
