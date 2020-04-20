@@ -121,4 +121,11 @@ export class NoteService {
       this.subject.next();
     }));
   }
+  searchByTitle(title : string)
+  {
+    return this.http.get(this.baseUrl+"searchByTitle/"+title,this.httpOptions)
+    .pipe(tap(()=>{
+      this.subject.next();
+    }));
+  }
 }

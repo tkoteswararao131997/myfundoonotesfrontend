@@ -5,13 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchnotePipe implements PipeTransform {
 
-  transform(notes: any[], noteTitle: string): any {
-    if(!notes) return [];
-    if(!noteTitle) return notes;
-    noteTitle = noteTitle.toLowerCase();
-   return notes.filter( note => {
-    return note.noteTitle.toLowerCase().includes(noteTitle);
-  });
+  transform(allNotes: any[], searchInput: string): any[] {
+    if (!allNotes)
+      return [];
+    if (!searchInput)
+      return allNotes;
+    searchInput = searchInput.toLowerCase();
+    return allNotes.filter(note => {
+      return note.title.toLowerCase().includes(searchInput);
+    });
   }
 
 }

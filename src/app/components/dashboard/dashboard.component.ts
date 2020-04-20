@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, PartialObserver } from 'rxjs';
+import { Observable, PartialObserver, BehaviorSubject } from 'rxjs';
 import { map, shareReplay, reduce } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { element } from 'protractor';
@@ -9,6 +9,8 @@ import { LabelService } from 'src/app/services/label.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ShowlabelComponent } from '../showlabel/showlabel.component';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
+import { NoteService } from 'src/app/services/note.service';
+import {Note} from 'src/app/models/note'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,8 +20,11 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
   grid: boolean = true;
   labels : Label[];
   labelnotes : Label[];
+  // searchNotes = new BehaviorSubject([]);
+  // currentMessage = this.searchNotes.asObservable();
+  searchNotes : Note[];
   public observer: PartialObserver<any>;
-  constructor(private router : Router,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar) {}
+  constructor(private router : Router,private noteservice : NoteService,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar) {}
   onClickView() {
     return this.grid === true ? (this.grid = false) : (this.grid = true);
   }
@@ -61,5 +66,9 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
       this.snackbar.open("no notes present","cancel",{duration:5000})
     })
   }
-
+  searchnotes(searchInput)
+  {
+       console.log("in dashboard",this.searchNotes);
+    this.router.navigate(['dashboard/searchnotes'],{queryParams:{searchInput:searchInput}});
+  }
 }

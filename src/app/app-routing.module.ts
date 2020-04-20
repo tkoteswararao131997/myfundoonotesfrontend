@@ -11,6 +11,7 @@ import { ArchieveComponent } from './components/archieve/archieve.component';
 import { TrashnotesComponent } from './components/trashnotes/trashnotes.component';
 import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
 import { RemindernotesComponent } from './components/remindernotes/remindernotes.component';
+import { SearchnotesComponent } from './components/searchnotes/searchnotes.component';
 
 const routes: Routes = [
   {path : '',component:LoginComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path : "trashnotes",component : TrashnotesComponent},
     {path : "labelnotes",component:LabelnotesComponent},
     {path : "remindernotes",component:RemindernotesComponent},
+    {path:"searchnotes",component:SearchnotesComponent}
   ]
   },
 

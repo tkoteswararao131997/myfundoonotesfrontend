@@ -37,6 +37,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { RemindernotesComponent } from './components/remindernotes/remindernotes.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SearchnotePipe } from './pipes/searchnote.pipe';
+import { SearchnotesComponent } from './components/searchnotes/searchnotes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +59,8 @@ import { SearchnotePipe } from './pipes/searchnote.pipe';
     LabelnotesComponent,
     RemindernotesComponent,
     FilterPipe,
-    SearchnotePipe
+    SearchnotePipe,
+    SearchnotesComponent,
   ],
   entryComponents: [UpdatenoteComponent,ShowlabelComponent],
   imports: [

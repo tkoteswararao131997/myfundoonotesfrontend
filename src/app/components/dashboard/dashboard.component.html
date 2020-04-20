@@ -1,4 +1,4 @@
-
+<div style="width: 100%;height:100%;">
 <mat-toolbar style=" z-index: 99999; width:100%;background-color: white;border:1px solid silver;height:35px;">
   <mat-toolbar-row style=" z-index: 99999;">
     <div  class="startmenu" style="display:flex; flex-direction: row;">
@@ -18,11 +18,11 @@
     <div class="formbar">
     <form class="form" style="display:flex; flex-direction: row;">
      <div class="searchicon">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="searchnotes(searchInput.value)">
           <mat-icon>search</mat-icon>
         </button>
       </div>
-      <input  class="searchbar" [(ngModel)]="searchText" type="text" placeholder="Search" name="searachnote">
+      <input  class="searchbar" #searchInput type="text" placeholder="Search" name="searachnote">
     <div class="clear">
       <button mat-icon-button>
         <mat-icon>clear</mat-icon>
@@ -152,5 +152,5 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
-
+</div>
   
