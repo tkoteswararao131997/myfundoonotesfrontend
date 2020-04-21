@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, PartialObserver, BehaviorSubject } from 'rxjs';
 import { map, shareReplay, reduce } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
 import  {Label} from 'src/app/models/label';
 import { LabelService } from 'src/app/services/label.service';
@@ -17,17 +17,15 @@ import {Note} from 'src/app/models/note'
   styleUrls: ['./dashboard.component.scss']
 })
  export class DashboardComponent { 
-  grid: boolean = true;
   labels : Label[];
   labelnotes : Label[];
-  // searchNotes = new BehaviorSubject([]);
-  // currentMessage = this.searchNotes.asObservable();
-  searchNotes : Note[];
+  view: boolean = false;
+  grid = "row";
+   searchNotes = new BehaviorSubject([]);
+   currentMessage = this.searchNotes.asObservable();
+  //searchNotes : Note[];
   public observer: PartialObserver<any>;
-  constructor(private router : Router,private noteservice : NoteService,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar) {}
-  onClickView() {
-    return this.grid === true ? (this.grid = false) : (this.grid = true);
-  }
+  constructor(private router : Router,private noteservice : NoteService,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar,private activatedroute:ActivatedRoute){}
   ngOnInit()
   {
     this.labelservice.autoRefresh.subscribe(()=>{
@@ -68,7 +66,28 @@ import {Note} from 'src/app/models/note'
   }
   searchnotes(searchInput)
   {
-       console.log("in dashboard",this.searchNotes);
-    this.router.navigate(['dashboard/searchnotes'],{queryParams:{searchInput:searchInput}});
+    // console.log("in dashboard",this.searchNotes);
+    // this.router.navigate(['dashboard/searchnotes'],{queryParams:{searchInput:searchInput}});
+      // this.noteservice.searchByTitle(searchInput).subscribe((result:any)=>{
+      //   this.searchNotes=result['data'];
+      //   console.log(this.searchNotes,result['data']);
+        this.router.navigate(['dashboard/searchnotes'],{queryParams:{searchInput:searchInput}});
+    // })
+    
+  }
+  gridView() {
+    if(this.view==true){
+      this.view=false;
+      this.grid="row";
+    }
+    else{
+      this.view=true;
+      this.grid="column";
+    }
+    this.activatedroute.queryParams.subscribe(params => {
+      let page= params['page'] || '';
+      this.router.navigate(['/dashboard/notes'], { queryParams: { page: page, view: this.grid } });
+    });
+    console.log(this.view);
   }
 }

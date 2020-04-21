@@ -1,5 +1,5 @@
 <div style="margin-top:40px;margin-left:130px" fxLayout="row" >
-    <div *ngFor="let note of allNotes | searchnote: searchInput"  class="noteCard"> 
+    <div *ngFor="let note of searchNotes" class="noteCard"> 
         <app-shownotes [note]="note"></app-shownotes>
     </div>
 </div>

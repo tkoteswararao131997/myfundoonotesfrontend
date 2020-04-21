@@ -123,9 +123,6 @@ export class NoteService {
   }
   searchByTitle(title : string)
   {
-    return this.http.get(this.baseUrl+"searchByTitle/"+title,this.httpOptions)
-    .pipe(tap(()=>{
-      this.subject.next();
-    }));
+    return this.http.get(this.baseUrl+"searchByTitle/"+title,this.httpOptions);
   }
 }

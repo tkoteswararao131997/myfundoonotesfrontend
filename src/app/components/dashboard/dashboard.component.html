@@ -36,31 +36,19 @@
         <mat-icon class="headericon">refresh</mat-icon>
       </button>
     </div>
-     <div class="list">
-      <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          fxFlex="10"
-          fxLayoutGap="30px"
-        >
-          <button
-          mat-button mat-icon-button
-            *ngIf="!grid"
-            matTooltip="List view"
-            (click)="onClickView()"
-          >
-            <mat-icon class="headericon">view_stream</mat-icon>
-          </button>
-          <button
-          mat-button mat-icon-button
-            *ngIf="grid"
-            matTooltip="Grid view"
-            (click)="onClickView()"
-          >
-            <mat-icon>view_module</mat-icon>
-          </button>
-        </div>
-    </div>
+    <div
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    fxFlex="10"
+    fxLayoutGap="30px"
+  >
+    <button mat-icon-button *ngIf="view" matTooltip="View Grid" (click)="gridView()">
+      <mat-icon>view_module</mat-icon>
+    </button>
+    <button mat-icon-button *ngIf="!view" matTooltip="List View" (click)="gridView()">
+      <mat-icon>view_agenda</mat-icon>
+    </button>
+  </div>
     <div style="display: flex;flex-direction: row;">
    <div class="settings">
       <button mat-button mat-icon-button class="settings" [matMenuTriggerFor]="menu" matTooltip="settings">
