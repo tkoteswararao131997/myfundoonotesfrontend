@@ -22,7 +22,7 @@
           <mat-icon>search</mat-icon>
         </button>
       </div>
-      <input  class="searchbar" #searchInput type="text" placeholder="Search" name="searachnote">
+      <input  class="searchbar" autocomplete="off" (keyup)="searchnotes(searchInput.value)" #searchInput type="text" placeholder="Search" name="searachnote">
     <div class="clear">
       <button mat-icon-button>
         <mat-icon>clear</mat-icon>
