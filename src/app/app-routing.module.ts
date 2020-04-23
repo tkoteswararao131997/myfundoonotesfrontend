@@ -12,6 +12,7 @@ import { TrashnotesComponent } from './components/trashnotes/trashnotes.componen
 import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
 import { RemindernotesComponent } from './components/remindernotes/remindernotes.component';
 import { SearchnotesComponent } from './components/searchnotes/searchnotes.component';
+import { AuthGuard } from './guards/auth-guard.service';
 
 const routes: Routes = [
   {path : '',component:LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path : 'dashboard',component : DashboardComponent},
   {path : 'resetpassword/:token',component : ResetpasswordComponent},
   { path: "dashboard",component: DashboardComponent,
+    canActivate:[AuthGuard],
   children: [
     { path: "", redirectTo: "/dashboard/notes", pathMatch: "full" },
     { path: "notes", component:NotesComponent},

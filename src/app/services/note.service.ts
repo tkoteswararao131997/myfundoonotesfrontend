@@ -38,9 +38,10 @@ export class NoteService {
     );
   }
 
-  public getnotes():Observable<Note[]>
+  public getnotes()
   {
-    return this.http.get<Note[]>(this.baseUrl+"/getallnotes",this.httpOptions);
+    token : localStorage.getItem("token");
+    return this.http.get(this.baseUrl+"/getallnotes",{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
   }
 
   updatenote(note : Note,noteId : number)

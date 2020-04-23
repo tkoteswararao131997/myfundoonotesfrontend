@@ -20,7 +20,8 @@ export class RemindernotesComponent implements OnInit {
     this.noteservice.getnotes().subscribe(
       (response: any) => {
         console.log(response);
-      this.remindernotes=response; 
+      this.remindernotes=response;
+      localStorage.setItem("token",null);
       },
       
     );
