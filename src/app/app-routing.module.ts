@@ -12,26 +12,26 @@ import { TrashnotesComponent } from './components/trashnotes/trashnotes.componen
 import { LabelnotesComponent } from './components/labelnotes/labelnotes.component';
 import { RemindernotesComponent } from './components/remindernotes/remindernotes.component';
 import { SearchnotesComponent } from './components/searchnotes/searchnotes.component';
-import { AuthGuard } from './guards/auth-guard.service';
+import { AuthGuard } from 'src/app/guards/auth-guard.service';
 
 const routes: Routes = [
   {path : '',component:LoginComponent},
   {path : 'login',component :LoginComponent},
   {path : 'register',component:RegisterComponent},
   {path : 'forgotpassword',component : ForgotpasswordComponent},
-  {path : 'dashboard',component : DashboardComponent},
+  //{path : 'dashboard',component : DashboardComponent},
   {path : 'resetpassword/:token',component : ResetpasswordComponent},
   { path: "dashboard",component: DashboardComponent,
-    canActivate:[AuthGuard],
+  canActivate:[AuthGuard],
   children: [
-    { path: "", redirectTo: "/dashboard/notes", pathMatch: "full" },
-    { path: "notes", component:NotesComponent},
-    {path : "getallnotes/:token",component:GetnotesComponent},
-    {path : "archievenotes",component : ArchieveComponent},
-    {path : "trashnotes",component : TrashnotesComponent},
-    {path : "labelnotes",component:LabelnotesComponent},
-    {path : "remindernotes",component:RemindernotesComponent},
-    {path:"searchnotes",component:SearchnotesComponent}
+    { path: "", redirectTo: "notes", pathMatch: "full" ,},
+    { path: "notes", component:NotesComponent,},
+    {path : "getallnotes/:token",component:GetnotesComponent,},
+    {path : "archievenotes",component : ArchieveComponent,},
+    {path : "trashnotes",component : TrashnotesComponent,},
+    {path : "labelnotes",component:LabelnotesComponent,},
+    {path : "remindernotes",component:RemindernotesComponent,},
+    {path:"searchnotes",component:SearchnotesComponent,}
   ]
   },
 

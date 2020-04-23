@@ -21,7 +21,7 @@ export class RemindernotesComponent implements OnInit {
       (response: any) => {
         console.log(response);
       this.remindernotes=response;
-      localStorage.setItem("token",null);
+      //localStorage.setItem("token",null);
       },
       
     );
