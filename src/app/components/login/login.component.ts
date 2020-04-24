@@ -30,7 +30,11 @@ export class LoginComponent implements OnInit {
     this.userservice.loginuser(data)
     .subscribe((result:any)=>{
       console.log(result);
-    localStorage.setItem("token",result['data']);
+    localStorage.setItem("token",result['message']);
+    localStorage.setItem("profile",result['data']['profile']);
+    localStorage.setItem("name",result['data']['name']);
+    localStorage.setItem("email",result['data']['email']);
+    console.log(result['data']['profile']);
     if(result['statusMsg']=="true")
     this.router.navigate(["/dashboard/notes"]);
     else{

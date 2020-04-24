@@ -16,7 +16,10 @@ import {Note} from 'src/app/models/note'
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
- export class DashboardComponent { 
+ export class DashboardComponent {
+  profile=localStorage.getItem("profile");
+  name=localStorage.getItem("name");
+  email=localStorage.getItem("email");
   labels : Label[];
   labelnotes : Label[];
   view: boolean = false;
@@ -89,5 +92,14 @@ import {Note} from 'src/app/models/note'
       this.router.navigate(['/dashboard/notes'], { queryParams: { page: page, view: this.grid } });
     });
     console.log(this.view);
+  }
+  uploadFiles(file)
+  {
+    console.log(file)
+    this.profile=file;
+  }
+  changeProfile(imgInput)
+  {
+    console.log(this.profile)
   }
 }
