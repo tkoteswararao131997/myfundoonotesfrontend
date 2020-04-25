@@ -7,18 +7,20 @@ import { AutofillMonitor } from '@angular/cdk/text-field';
 import { LabelService } from 'src/app/services/label.service';
 import { Label } from 'src/app/models/label';
 import { PartialObserver, Observable } from 'rxjs';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 @Component({
   selector: 'app-shownotes',
   templateUrl: './shownotes.component.html',
   styleUrls: ['./shownotes.component.scss']
 })
 export class ShownotesComponent implements OnInit {
+  grid = DashboardComponent.grid;
   selectable = true;
   removable = true;
   labellist:Label[];
   notes:Note[];
   @Input() note: Note;
-  constructor(private noteservice : NoteService,private dialog:MatDialog,private snackbar : MatSnackBar,private labelservice : LabelService) { }
+  constructor(private dashboard:DashboardComponent,private noteservice : NoteService,private dialog:MatDialog,private snackbar : MatSnackBar,private labelservice : LabelService) { }
    public observer: PartialObserver<any>;
   ngOnInit() {
     this.noteservice.getlabelsfromnote(this.note.noteId).subscribe((response:any)=>{
@@ -37,7 +39,6 @@ export class ShownotesComponent implements OnInit {
       minHeight:"170px",
       maxHeight:"auto",
       data: { note },
-     
     });
     dialogref.afterClosed().subscribe(result => {
     });

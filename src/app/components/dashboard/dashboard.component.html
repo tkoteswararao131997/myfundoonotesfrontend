@@ -71,35 +71,41 @@
     </div>
     <div>
       <button  mat-icon-button mat-button matTooltip="account" width="30" [matMenuTriggerFor]="menu3">
-        <img mat-card-avatar class="image2" src={{profile}}> 
+        <img mat-card-avatar class="avatar" src={{profile}}>
       </button>
       <mat-menu #menu3="matMenu">
-        <div fxLayout="column" fxLayoutAlign="center">
-          <div fxLayoutAlign="center">
+        <div fxLayout="column" fxLayoutAlign="center" style="height:350px;border-radius: 8px;align-items: center;">
+          <div fxLayoutAlign="center" style="position: fixed;top: 90px;margin-left: 130px;">
             <img 
               class="topic-avatar"
               mat-card-avatar
+              style="border-radius: 50%;width:90px;height: 90px;position: fixed;"
               src="{{profile}}"
             />
-            <label class="btn-upload">
-              <input type="file" #imgInput name="fileupload" (change)="uploadFiles($event)"/>
-              <button class="btnn" (click)="changeProfile(ImgInput.value)">Change</button>
-            </label>
+            <button class="onChangeButton" (click)="fileInput.click($event)"><mat-icon>camera_alt</mat-icon>
+              <input class="input-hidden" #fileInput type="file" (click)="changeProfile($event)" />
+            </button>
           </div>
           <div
             class="firstName"
-            style="margin-top: 10px;
-            text-align: center;"
+            style="margin-top: 40px;
+            text-align: center;
+            font-weight: bold;
+            padding-left: 5px;
+            padding-right: 5px;"
             >
               {{name}}
           </div>
           <div
             class="email"
-            style="margin-top: 10px;margin-bottom: 20px;"
+            style="margin-top: 10px;margin-bottom: 20px;padding-left: 30px;
+            padding-right: 5px;"
             >
               {{email}}
           </div>
-          <button mat-raised-button (click)="signOut()">
+          <button mat-raised-button (click)="signOut()" style="width: 90px;
+          top: 20%;
+          margin-left: 90px;">
             Sign out
           </button>
         </div>

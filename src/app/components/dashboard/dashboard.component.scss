@@ -11,6 +11,34 @@
   color:rgb(99, 96, 96);
   margin-top: -12px;
 }
+.avatar {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.onChangeButton{
+  width: 35px;
+    height: 30px;
+    margin-top: 66px;
+    margin-right: -68px;
+    z-index: 9;
+    border: none;
+    outline: none;
+    background-color: white;
+    border-radius: 50%;
+}
+.mat-menu-panel {
+  /* min-width: 112px; */
+  /* width: 280px; */
+  width: 330px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: calc(100vh - 48px);
+  border-radius: 4px;
+  outline: 0;
+  min-height: 64px;
+}
 .searchbar{
   border:none;
   outline: none;
@@ -144,4 +172,7 @@ btn-upload input[type="file"] {
   mat-sidenav-content{
     width:auto;
   }
+}
+.input-hidden{
+  display: none;
 }

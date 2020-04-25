@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, PartialObserver, BehaviorSubject } from 'rxjs';
 import { map, shareReplay, reduce } from 'rxjs/operators';
@@ -16,7 +16,9 @@ import {Note} from 'src/app/models/note'
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
+
  export class DashboardComponent {
+
   profile=localStorage.getItem("profile");
   name=localStorage.getItem("name");
   email=localStorage.getItem("email");
@@ -93,13 +95,22 @@ import {Note} from 'src/app/models/note'
     });
     console.log(this.view);
   }
-  uploadFiles(file)
+  onProfileUpload(event)
   {
-    console.log(file)
-    this.profile=file;
+    console.log(event);
+    this.profile=event.target.files[0]['name'];
+    console.log(this.profile);
   }
   changeProfile(imgInput)
   {
-    console.log(this.profile)
+    // imgInput.click();
+    console.log(imgInput);
   }
+
+  signOut()
+  {
+    localStorage.setItem("token",null);
+    this.router.navigate(['/']);
+  }
+
 }
