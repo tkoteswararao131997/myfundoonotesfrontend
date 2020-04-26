@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from '../models/user';
 import { Observable } from 'rxjs';
 @Injectable({
@@ -28,6 +28,12 @@ export class UserService {
   {
     return this.http.post<User>(this.baseurl+"forgotpassword",arr);
   }
-//  uploadProfie()
-  
+  uploadProfie(file : FormData)
+  {
+    return this.http.post(this.baseurl+"uploadProfile",file,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+  }
+  getUser()
+  {
+    return this.http.get(this.baseurl+"getuser",{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
+  }
 }

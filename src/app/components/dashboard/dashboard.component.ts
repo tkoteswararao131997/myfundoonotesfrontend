@@ -11,6 +11,7 @@ import { ShowlabelComponent } from '../showlabel/showlabel.component';
 import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { NoteService } from 'src/app/services/note.service';
 import {Note} from 'src/app/models/note'
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -18,19 +19,19 @@ import {Note} from 'src/app/models/note'
 })
 
  export class DashboardComponent {
-
+   file :any;
+  token=localStorage.getItem("token");
   profile=localStorage.getItem("profile");
   name=localStorage.getItem("name");
   email=localStorage.getItem("email");
   labels : Label[];
   labelnotes : Label[];
-  view: boolean = false;
-  grid = "row";
+  view: boolean = true;
    searchNotes = new BehaviorSubject([]);
    currentMessage = this.searchNotes.asObservable();
   //searchNotes : Note[];
   public observer: PartialObserver<any>;
-  constructor(private router : Router,private noteservice : NoteService,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar,private activatedroute:ActivatedRoute){}
+  constructor(private userservice:UserService,private router : Router,private noteservice : NoteService,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar,private activatedroute:ActivatedRoute){}
   ngOnInit()
   {
     this.labelservice.autoRefresh.subscribe(()=>{
@@ -81,19 +82,24 @@ import {Note} from 'src/app/models/note'
     
   }
   gridView() {
-    if(this.view==true){
+    let matcardnote= document.getElementsByClassName('matcardnote');
+    if(this.view == true){
       this.view=false;
-      this.grid="row";
+    document.getElementById('get-notes').style.width = '520px';
+    for(var i=0;i<matcardnote.length;i++){
+      matcardnote[i].style.width = '600px'
+    }
+    console.log("matcardnote",matcardnote);
+    
     }
     else{
       this.view=true;
-      this.grid="column";
+      document.getElementById('get-notes').style.width = 'auto';
+      for(var i=0;i<matcardnote.length;i++){
+        matcardnote[i].style.width = '210px'
+      };
     }
-    this.activatedroute.queryParams.subscribe(params => {
-      let page= params['page'] || '';
-      this.router.navigate(['/dashboard/notes'], { queryParams: { page: page, view: this.grid } });
-    });
-    console.log(this.view);
+
   }
   onProfileUpload(event)
   {
@@ -101,10 +107,16 @@ import {Note} from 'src/app/models/note'
     this.profile=event.target.files[0]['name'];
     console.log(this.profile);
   }
-  changeProfile(imgInput)
+  changeProfile(event)
   {
-    // imgInput.click();
-    console.log(imgInput);
+    this.file=event.target.files[0];
+    const formData = new FormData();  
+    formData.append('file', this.file);  
+    this.file.inProgress = true;
+    this.userservice.uploadProfie(formData).subscribe((result:any)=>{
+      console.log(result['data']['profile']);
+      this.profile=result['data']['profile'];
+    });
   }
 
   signOut()

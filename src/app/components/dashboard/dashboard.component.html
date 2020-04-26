@@ -83,7 +83,7 @@
               src="{{profile}}"
             />
             <button class="onChangeButton" (click)="fileInput.click($event)"><mat-icon>camera_alt</mat-icon>
-              <input class="input-hidden" #fileInput type="file" (click)="changeProfile($event)" />
+              <input class="input-hidden" #fileInput type="file" (change)="changeProfile($event)"/>
             </button>
           </div>
           <div
@@ -103,6 +103,7 @@
             >
               {{email}}
           </div>
+          <mat-divider style="top:10%"></mat-divider>
           <button mat-raised-button (click)="signOut()" style="width: 90px;
           top: 20%;
           margin-left: 90px;">

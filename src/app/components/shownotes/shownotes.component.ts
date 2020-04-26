@@ -14,7 +14,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
   styleUrls: ['./shownotes.component.scss']
 })
 export class ShownotesComponent implements OnInit {
-  grid = DashboardComponent.grid;
+  // grid = DashboardComponent.grid;
   selectable = true;
   removable = true;
   labellist:Label[];
