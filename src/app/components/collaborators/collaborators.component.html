@@ -1,0 +1,34 @@
+<div>
+    <h3>collaborators</h3>
+    <mat-divider></mat-divider>
+        <div fxLayout="row" style="margin-top: 19px;">
+            <img mat-card-avatar class="avatar" src={{profile}}>
+            <div fxLayout="column" style="margin-left: 17px;margin-top: 5px;">
+                <div fxLayout="row">
+                    <label style="font-weight: bold;">{{name}}</label>
+                    <span>(owner)</span>
+                </div>
+                <label>{{email}}</label>
+            </div>
+        </div>
+        <div *ngFor="let collaborator of collaborators">
+            <div fxLayout="row" style="margin-top:13px">
+                <img mat-card-avatar class="avatar" src={{collaborator.profile}}>
+                <label style="margin-top: 13px;margin-left: 17px;width: 90%;">{{collaborator.email}}</label>
+                <button mat-icon-button mat-button matTooltip="remove collaborator" (click)="removeCollaborator(collaborator)">
+                    <mat-icon style="opacity: 0.7;font-size: 22px;margin-top: 5px;">clear</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div fxLayout="row" style="margin-top: 19px;">
+        <img mat-card-avatar src="/assets/img/addColab.png">
+        <input matInput class="text" placeholder="person or email to share with" [(ngModel)]="colabName" #labelInput autocomplete="off"/>
+        <button mat-button mat-icon-button matTooltip="Create label" class="icon-button" (click)="addColab(colabName)" class="check">
+            <mat-icon style="opacity: 0.7;font-size: 22px;">check</mat-icon>
+      </button>
+    </div>
+    <mat-card-footer fxLayout="row" style="margin-top: 19px;height: 44px;">
+        <button mat-button style="margin-left: 70%;outline: none;border: none;height: 36px;width: 72px;background-color: white;">cancel</button>
+        <button mat-button style="margin-left: 10%;outline: none;border: none;height: 36px;width: 72px;background-color: white;" (click)="closeDialog()">save</button>
+    </mat-card-footer>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteService } from 'src/app/services/note.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -8,6 +8,8 @@ import { LabelService } from 'src/app/services/label.service';
 import { Label } from 'src/app/models/label';
 import { PartialObserver, Observable } from 'rxjs';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { CollaboratorService } from 'src/app/services/collaborator.service';
+import { CollaboratorsComponent } from '../collaborators/collaborators.component';
 @Component({
   selector: 'app-shownotes',
   templateUrl: './shownotes.component.html',
@@ -16,22 +18,27 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 export class ShownotesComponent implements OnInit {
   // grid = DashboardComponent.grid;
   selectable = true;
+  collaborators:any;
+  view=localStorage.getItem("view");
   removable = true;
   labellist:Label[];
   notes:Note[];
   @Input() note: Note;
-  constructor(private dashboard:DashboardComponent,private noteservice : NoteService,private dialog:MatDialog,private snackbar : MatSnackBar,private labelservice : LabelService) { }
+  constructor(private cdRef:ChangeDetectorRef,private collaboratorservice:CollaboratorService,private dashboard:DashboardComponent,private noteservice : NoteService,private dialog:MatDialog,private snackbar : MatSnackBar,private labelservice : LabelService) { }
    public observer: PartialObserver<any>;
   ngOnInit() {
     this.noteservice.getlabelsfromnote(this.note.noteId).subscribe((response:any)=>{
       console.log(response['data']);
       this.labellist=response['data'];
       });
+      this.view = localStorage.getItem("view");
+      console.log(this.view);
+      this.getCollaborators();
     }
     getlabelsfromnote()
     {
       
-}
+    }
   openNote(note)
   {
     const dialogref=this.dialog.open(UpdatenoteComponent,{
@@ -126,4 +133,24 @@ export class ShownotesComponent implements OnInit {
     console.log('labellist',this.labellist);
     console.log('Picked date: ', data);
 }
+getCollaborators()
+  {
+  this.collaboratorservice.getCollaborators(this.note.noteId).subscribe((result : any)=>{
+    this.collaborators=result['data'];
+    console.log("collaborators",this.collaborators);
+
+  })
+  }
+  collaboratorDialog(note)
+  {
+    const matdialogref = this.dialog.open(CollaboratorsComponent,{
+      width : "700px",
+      minHeight : "300px",
+      maxHeight:"500px",
+      data: { note },
+    });
+    matdialogref.afterClosed().subscribe(result => {
+      console.log("label closed");
+    });
+  }
 }

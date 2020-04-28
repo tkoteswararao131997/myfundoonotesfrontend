@@ -1,4 +1,4 @@
-<div class="icons">
+<div class="icons" id="get-notes">
   <button [matMenuTriggerFor]="datetime" mat-button mat-icon-button matTooltip="Remind me" class="remindme"> 
     <mat-icon>add_alert</mat-icon>
   </button>
@@ -8,7 +8,7 @@
     <button mat-icon-button color="primary" (click)="reminder(ImpDate.value)">Save</button>
   </mat-menu>
   <owl-date-time #dt1></owl-date-time>
-  <button mat-button mat-icon-button matTooltip="collaborator"> 
+  <button mat-button mat-icon-button matTooltip="collaborator" (click)="collaborators(note)"> 
     <mat-icon>person_add</mat-icon>
   </button>
   <button mat-button mat-icon-button matTooltip="change color" [matMenuTriggerFor]="menu" (click)="color()"> 

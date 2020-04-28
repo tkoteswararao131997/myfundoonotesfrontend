@@ -1,10 +1,11 @@
 import { Component, OnInit,Input,Output, EventEmitter} from '@angular/core';
 import {Note} from 'src/app/models/note';
 import { NoteService } from 'src/app/services/note.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { window } from 'rxjs/operators';
 import {Label} from 'src/app/models/label';
 import { LabelService } from 'src/app/services/label.service';
+import { CollaboratorsComponent } from '../collaborators/collaborators.component';
 @Component({
   selector: 'app-icons',
   templateUrl: './icons.component.html',
@@ -17,7 +18,7 @@ export class IconsComponent implements OnInit {
   notelabels:Label[]=[];
   isedit : boolean = false;
   @Output() onAddNote: EventEmitter<any> = new EventEmitter<any>();
-  constructor(private noteservice : NoteService,private snackbar:MatSnackBar,private labelservice : LabelService) { }
+  constructor(private dialog:MatDialog,private noteservice : NoteService,private snackbar:MatSnackBar,private labelservice : LabelService) { }
   @Input() note: Note;
   labels : Label[];
   ngOnInit() {
@@ -161,5 +162,17 @@ export class IconsComponent implements OnInit {
     this.noteservice.createreminder(datetime,this.note.noteId).subscribe((result:any)=>{
       this.note.reminde=result['data.reminde'];
     })
+  }
+  collaborators(note)
+  {
+    const matdialogref = this.dialog.open(CollaboratorsComponent,{
+      width : "700px",
+      minHeight : "300px",
+      maxHeight:"500px",
+      data: { note },
+    });
+    matdialogref.afterClosed().subscribe(result => {
+      console.log("label closed");
+    });
   }
 }

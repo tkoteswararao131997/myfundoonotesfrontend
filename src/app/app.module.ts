@@ -38,6 +38,7 @@ import { RemindernotesComponent } from './components/remindernotes/remindernotes
 import { FilterPipe } from './pipes/filter.pipe';
 import { SearchnotePipe } from './pipes/searchnote.pipe';
 import { SearchnotesComponent } from './components/searchnotes/searchnotes.component';
+import { CollaboratorsComponent } from './components/collaborators/collaborators.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,8 +62,9 @@ import { SearchnotesComponent } from './components/searchnotes/searchnotes.compo
     FilterPipe,
     SearchnotePipe,
     SearchnotesComponent,
+    CollaboratorsComponent,
   ],
-  entryComponents: [UpdatenoteComponent,ShowlabelComponent],
+  entryComponents: [UpdatenoteComponent,ShowlabelComponent,CollaboratorsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

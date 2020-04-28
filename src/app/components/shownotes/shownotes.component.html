@@ -1,5 +1,5 @@
-<div class="shownotes" fxLayout="row" fxLayoutAlign="space-between around">
-<mat-card class="matcardnote" id="matcardnote" autocomplete="off" role="combobox" flex="column"
+<div class="shownotes" fxLayout="column" fxLayoutAlign="space-between around">
+<mat-card *ngIf='view==="true"' class="matcardnote" autocomplete="off" role="combobox" flex="row"
 [ngStyle]="{ 'background-color': note.color }"
 >
 <div style="display:flex;flex-direction: row;">
@@ -25,6 +25,56 @@
       </mat-chip>
     </mat-chip-list>
   </mat-card-content>
+  <div *ngFor="let collaborator of collaborators">
+    <button style="border:none;outline:none;" matTooltip={{collaborator.email}} [ngStyle]="{ 'background-color': note.color }" (click)="collaboratorDialog(note)"><img mat-card-avatar class="avatar" src={{collaborator.profile}}></button>
+  </div>
+    <div *ngIf="!note.trashed;else trashedNote">
+      <mat-card-footer class="icons">
+      <app-icons [note]="note" (onAddNote)="noteAdd($event)"></app-icons>
+      </mat-card-footer>
+    </div>
+    <ng-template #trashedNote>
+      <div class="trashcard">
+        <mat-card-footer>
+          <button mat-icon-button (click)="deleteForever()">
+            <mat-icon matTooltip="Delete forever">delete_forever</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Restore" (click)="restoreFromTrash()">
+            <mat-icon>restore_from_trash</mat-icon>
+          </button>
+        </mat-card-footer>
+      </div>
+    </ng-template>
+</mat-card>
+<mat-card *ngIf='view==="false"' class="matcardnotegrid" autocomplete="off" role="combobox" flex="row"
+[ngStyle]="{ 'background-color': note.color }"
+>
+<div style="display:flex;flex-direction: row;">
+  <mat-card-title (click)="!note.trashed && openNote(note)" class="content">
+    <textarea  class="text" cdkTextareaAutosize disabled [ngStyle]="{ 'background-color': note.color }">{{ note.title }}</textarea>
+  </mat-card-title>
+  <button mat-button mat-icon-button matTooltip="pin note" class="pinbutton" [ngStyle]="{ 'background-color': note.color }" (click)="ispin()"><img class="pinimage" src="/assets/img/pin.png" alt="keep"></button>
+</div>
+  <mat-card-content (click)="!note.trashed && openNote(note)"class="content">
+    <textarea  class="text" cdkTextareaAutosize disabled [ngStyle]="{ 'background-color': note.color }">{{ note.description }}</textarea>
+    <mat-chip-list >
+      <div *ngIf="note.reminde!=null">
+      <!-- <mat-icon class="">query_builder</mat-icon> -->
+      <mat-chip style="margin-top: 15px;" fxLayout="" [selectable]="selectable" [removable]="removable" 
+      (removed)="removeReminder()"><label>{{note.reminde | date :'MMM/d, h:mm a'}}</label>
+      <mat-icon matChipRemove *ngIf="removable" class="chipremoval">cancel</mat-icon>
+    </mat-chip>
+      </div>
+      <mat-chip *ngFor="let label of labellist" style="margin-top: 15px;" fxLayout="row" [selectable]="selectable" [removable]="removable" 
+      (removed)="remove(label)">
+      {{label.labelName}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
+  <div *ngFor="let collaborator of collaborators">
+    <button style="border:none;outline:none;" matTooltip={{collaborator.email}} [ngStyle]="{ 'background-color': note.color }" (click)="collaboratorDialog(note)"><img mat-card-avatar class="avatar" src={{collaborator.profile}}></button>
+  </div>
     <div *ngIf="!note.trashed;else trashedNote">
       <mat-card-footer class="icons">
       <app-icons [note]="note" (onAddNote)="noteAdd($event)"></app-icons>

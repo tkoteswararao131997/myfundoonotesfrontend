@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, PartialObserver, BehaviorSubject } from 'rxjs';
+import { Observable, PartialObserver, BehaviorSubject, Subject } from 'rxjs';
 import { map, shareReplay, reduce } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { element } from 'protractor';
@@ -26,7 +26,7 @@ import { UserService } from 'src/app/services/user.service';
   email=localStorage.getItem("email");
   labels : Label[];
   labelnotes : Label[];
-  view: boolean = true;
+  view:any=true;
    searchNotes = new BehaviorSubject([]);
    currentMessage = this.searchNotes.asObservable();
   //searchNotes : Note[];
@@ -38,6 +38,7 @@ import { UserService } from 'src/app/services/user.service';
     this.getlabels();
     })
     this.getlabels();
+    //localStorage.setItem("view",this.view);
   }
   getlabels()
   {
@@ -81,26 +82,34 @@ import { UserService } from 'src/app/services/user.service';
     // })
     
   }
-  gridView() {
-    let matcardnote= document.getElementsByClassName('matcardnote');
-    if(this.view == true){
-      this.view=false;
-    document.getElementById('get-notes').style.width = '520px';
-    for(var i=0;i<matcardnote.length;i++){
-      matcardnote[i].style.width = '600px'
-    }
-    console.log("matcardnote",matcardnote);
-    
-    }
-    else{
-      this.view=true;
-      document.getElementById('get-notes').style.width = 'auto';
-      for(var i=0;i<matcardnote.length;i++){
-        matcardnote[i].style.width = '210px'
-      };
-    }
+   gridView() {
 
-  }
+    localStorage.setItem("view",this.view);
+    if(this.view==true)
+      this.view=false;
+    else
+      this.view=true;
+    console.log(this.view,"view");
+   }
+    // let matcardnote= document.getElementsByClassName('matcardnote');
+    // if(this.view == true){
+    //   this.view=false;
+    // document.getElementById('get-notes').style.width = '520px';
+    // for(var i=0;i<matcardnote.length;i++){
+    //   // matcardnote[i].style.width = '600px'
+    // }
+    // console.log("matcardnote",matcardnote);
+    
+    // }
+    // else{
+    //   this.view=true;
+    //   document.getElementById('get-notes').style.width = 'auto';
+    //   for(var i=0;i<matcardnote.length;i++){
+    //     // matcardnote[i].style.width = '210px'
+    //   };
+    // }
+
+  // }
   onProfileUpload(event)
   {
     console.log(event);
@@ -116,6 +125,8 @@ import { UserService } from 'src/app/services/user.service';
     this.userservice.uploadProfie(formData).subscribe((result:any)=>{
       console.log(result['data']['profile']);
       this.profile=result['data']['profile'];
+      localStorage.setItem("profile",this.profile);
+      console.log(this.profile)
     });
   }
 
