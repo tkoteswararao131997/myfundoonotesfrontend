@@ -1,5 +1,5 @@
 <div class="shownotes" fxLayout="column" fxLayoutAlign="space-between around">
-<mat-card *ngIf='view==="true"' class="matcardnote" autocomplete="off" role="combobox" flex="row"
+<mat-card *ngIf="view" class="matcardnote" autocomplete="off" role="combobox" flex="row"
 [ngStyle]="{ 'background-color': note.color }"
 >
 <div style="display:flex;flex-direction: row;">
@@ -25,9 +25,11 @@
       </mat-chip>
     </mat-chip-list>
   </mat-card-content>
-  <div *ngFor="let collaborator of collaborators">
+  <div fxLayout="row">
+  <div *ngFor="let collaborator of collaborators" style="width:53px;">
     <button style="border:none;outline:none;" matTooltip={{collaborator.email}} [ngStyle]="{ 'background-color': note.color }" (click)="collaboratorDialog(note)"><img mat-card-avatar class="avatar" src={{collaborator.profile}}></button>
   </div>
+</div>
     <div *ngIf="!note.trashed;else trashedNote">
       <mat-card-footer class="icons">
       <app-icons [note]="note" (onAddNote)="noteAdd($event)"></app-icons>
@@ -46,7 +48,7 @@
       </div>
     </ng-template>
 </mat-card>
-<mat-card *ngIf='view==="false"' class="matcardnotegrid" autocomplete="off" role="combobox" flex="row"
+<mat-card *ngIf="!view" class="matcardnotegrid" autocomplete="off" role="combobox" flex="row"
 [ngStyle]="{ 'background-color': note.color }"
 >
 <div style="display:flex;flex-direction: row;">
@@ -77,7 +79,7 @@
   </div>
     <div *ngIf="!note.trashed;else trashedNote">
       <mat-card-footer class="icons">
-      <app-icons [note]="note" (onAddNote)="noteAdd($event)"></app-icons>
+      <app-icons [note]="note" (onAddNote)="noteAdd($event)" (colUpdate)="updateCollab($event)"></app-icons>
       </mat-card-footer>
     </div>
     <ng-template #trashedNote>

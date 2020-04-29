@@ -18,6 +18,7 @@ export class IconsComponent implements OnInit {
   notelabels:Label[]=[];
   isedit : boolean = false;
   @Output() onAddNote: EventEmitter<any> = new EventEmitter<any>();
+  @Output() colUpdate: EventEmitter<any> = new EventEmitter<any>();
   constructor(private dialog:MatDialog,private noteservice : NoteService,private snackbar:MatSnackBar,private labelservice : LabelService) { }
   @Input() note: Note;
   labels : Label[];
@@ -172,7 +173,9 @@ export class IconsComponent implements OnInit {
       data: { note },
     });
     matdialogref.afterClosed().subscribe(result => {
-      console.log("label closed");
+
+      console.log("label closed",result);
+      this.colUpdate.emit(result);
     });
   }
 }

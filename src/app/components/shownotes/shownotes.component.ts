@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef , AfterViewInit} from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteService } from 'src/app/services/note.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -6,10 +6,13 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import { LabelService } from 'src/app/services/label.service';
 import { Label } from 'src/app/models/label';
-import { PartialObserver, Observable } from 'rxjs';
+import { PartialObserver, Observable, Subject } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { CollaboratorService } from 'src/app/services/collaborator.service';
 import { CollaboratorsComponent } from '../collaborators/collaborators.component';
+import { viewToggleButton } from 'src/app/services/common.services';
+import {User} from 'src/app/models/user';
 @Component({
   selector: 'app-shownotes',
   templateUrl: './shownotes.component.html',
@@ -18,22 +21,38 @@ import { CollaboratorsComponent } from '../collaborators/collaborators.component
 export class ShownotesComponent implements OnInit {
   // grid = DashboardComponent.grid;
   selectable = true;
-  collaborators:any;
-  view=localStorage.getItem("view");
+  collaborators:User[];
+  view:boolean = JSON.parse(localStorage.getItem("view"))? JSON.parse(localStorage.getItem("view")) : false;
+  // private view = new Subject<string>();
+  // searchAnnounced$ = this.view.asObservable();
   removable = true;
   labellist:Label[];
   notes:Note[];
   @Input() note: Note;
-  constructor(private cdRef:ChangeDetectorRef,private collaboratorservice:CollaboratorService,private dashboard:DashboardComponent,private noteservice : NoteService,private dialog:MatDialog,private snackbar : MatSnackBar,private labelservice : LabelService) { }
+  constructor(private cdRef:ChangeDetectorRef,
+    private collaboratorservice:CollaboratorService,
+    private dashboard:DashboardComponent,
+    private noteservice : NoteService,
+    private dialog:MatDialog,
+    private snackbar : MatSnackBar,
+    private labelservice : LabelService,
+    public toggleButton:viewToggleButton) { }
    public observer: PartialObserver<any>;
-  ngOnInit() {
+  async ngOnInit() {
     this.noteservice.getlabelsfromnote(this.note.noteId).subscribe((response:any)=>{
-      console.log(response['data']);
       this.labellist=response['data'];
       });
-      this.view = localStorage.getItem("view");
-      console.log(this.view);
-      this.getCollaborators();
+     await this.getCollaborators();
+
+      
+    }
+    ngAfterViewInit(){
+      this.toggleButton.getButtonState()
+      .pipe(
+        delay(0)
+    ).subscribe((val:any) => {
+        this.view = val;
+      });
     }
     getlabelsfromnote()
     {
@@ -85,13 +104,10 @@ export class ShownotesComponent implements OnInit {
   }
   remove(label)
   {
-    console.log(label);
-    console.log(this.labellist);
     this.labelservice.deletelabelfromnote(label.labelId,this.note.noteId).subscribe((result : any)=>{
       if(result['statusMsg']=="true")
       {
       this.labellist= this.labellist.filter(x => x.labelId != label.labelId);
-      console.log(this.labellist);
       this.snackbar.open("label deleted in note","cancel",{duration : 5000});
       }
       else
@@ -126,20 +142,15 @@ export class ShownotesComponent implements OnInit {
   noteAdd(data) {
     this.labellist
     // var index = this.note.findIndex(x => x.hello === 'stevie')
-    console.log("this.labellist",this.labellist);
     // var index = this.labellist.findIndex(x => x.hello === 'stevie')
     // this.note.labels=null;
     this.labellist.push(data);
-    console.log('labellist',this.labellist);
-    console.log('Picked date: ', data);
 }
-getCollaborators()
+ getCollaborators()
   {
-  this.collaboratorservice.getCollaborators(this.note.noteId).subscribe((result : any)=>{
-    this.collaborators=result['data'];
-    console.log("collaborators",this.collaborators);
-
-  })
+    this.collaboratorservice.getCollaboratorsList(this.note.noteId).subscribe((result:any)=>{
+      this.collaborators=result["data"];
+    })
   }
   collaboratorDialog(note)
   {
@@ -150,7 +161,10 @@ getCollaborators()
       data: { note },
     });
     matdialogref.afterClosed().subscribe(result => {
-      console.log("label closed");
     });
+  }
+  updateCollab(event){
+    console.log("event",event);
+    this.collaborators=event;
   }
 }

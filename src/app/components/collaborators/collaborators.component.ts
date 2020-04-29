@@ -3,13 +3,14 @@ import { CollaboratorService } from 'src/app/services/collaborator.service';
 import {Note} from 'src/app/models/note';
 import {User} from 'src/app/models/user';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 @Component({
   selector: 'app-collaborators',
   templateUrl: './collaborators.component.html',
   styleUrls: ['./collaborators.component.scss']
 })
 export class CollaboratorsComponent implements OnInit {
-  note:Note
+  @Input() note:Note
   collaborators:User[];
   newCollaborator=new User;
   newColabEmail:any;
@@ -26,33 +27,31 @@ export class CollaboratorsComponent implements OnInit {
   }
   getCollaborators()
   {
-  this.collaboratorservice.getCollaborators(this.note.noteId).subscribe((result : any)=>{
-    this.collaborators=result['data'];
-    console.log(this.collaborators);
-
+  this.collaboratorservice.getCollaborators(this.note.noteId);
+  this.collaboratorservice.getCollabList().subscribe((result)=>{
+    this.collaborators = result;
   })
+  // .subscribe((result : any)=>{
+  //   this.collaborators=result['data'];
+  //   console.log(this.collaborators);
+
+  // })
   }
 
   removeCollaborator(collaborator){
-    console.log(collaborator);
+    console.log(collaborator,this.note.noteId);
     this.newCollaborator.email=collaborator.email;
-    console.log(this.newCollaborator.userid)
-    this.collaboratorservice.removeCollaborator(this.newCollaborator.email,this.note.noteId).subscribe((result:any)=>{
-      console.log(result);
-    })
+
+    this.collaboratorservice.removeCollaborator(this.newCollaborator.email,this.note.noteId);
   }
 
   addColab(colabName){
-    console.log(colabName);
     this.newColabEmail=colabName;
-    this.collaboratorservice.addCollaborator(this.newColabEmail,this.note.noteId,).subscribe((result:any)=>{
-      console.log(result);
-    })
+    this.collaboratorservice.addCollaborator(this.newColabEmail,this.note.noteId);
   }
-
   closeDialog()
   {
-    this.matDialogRef.close();
+    this.matDialogRef.close(this.collaborators);
   }
 
 }

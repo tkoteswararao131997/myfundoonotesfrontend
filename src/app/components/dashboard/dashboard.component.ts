@@ -12,6 +12,8 @@ import { UpdatenoteComponent } from '../updatenote/updatenote.component';
 import { NoteService } from 'src/app/services/note.service';
 import {Note} from 'src/app/models/note'
 import { UserService } from 'src/app/services/user.service';
+import { CollaboratorService } from 'src/app/services/collaborator.service';
+import { viewToggleButton } from 'src/app/services/common.services';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -26,12 +28,20 @@ import { UserService } from 'src/app/services/user.service';
   email=localStorage.getItem("email");
   labels : Label[];
   labelnotes : Label[];
-  view:any=true;
+  view:boolean=true;
    searchNotes = new BehaviorSubject([]);
    currentMessage = this.searchNotes.asObservable();
   //searchNotes : Note[];
   public observer: PartialObserver<any>;
-  constructor(private userservice:UserService,private router : Router,private noteservice : NoteService,private labelservice : LabelService,private dialog : MatDialog,private snackbar:MatSnackBar,private activatedroute:ActivatedRoute){}
+  constructor(private collaboratorservice:CollaboratorService,
+    private userservice:UserService,
+    private router : Router,
+    private noteservice : NoteService,
+    private labelservice : LabelService,
+    private dialog : MatDialog,
+    private snackbar:MatSnackBar,
+    private activatedroute:ActivatedRoute,
+    public toggleButton:viewToggleButton){}
   ngOnInit()
   {
     this.labelservice.autoRefresh.subscribe(()=>{
@@ -83,13 +93,17 @@ import { UserService } from 'src/app/services/user.service';
     
   }
    gridView() {
-
-    localStorage.setItem("view",this.view);
-    if(this.view==true)
+      //this.collaboratorservice.announceSearch(this.view);
+    if(this.view)
       this.view=false;
     else
       this.view=true;
     console.log(this.view,"view");
+    
+    this.toggleButton.updateButtonState(this.view);
+    localStorage.setItem("view",JSON.stringify(this.view));
+
+
    }
     // let matcardnote= document.getElementsByClassName('matcardnote');
     // if(this.view == true){
